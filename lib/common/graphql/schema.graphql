@@ -1,0 +1,479 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """id"""
+  id: Int!
+  username: String!
+  firstName: String
+  lastName: String
+  middlename: String
+  phone: String
+  email: String
+  role: String!
+  isActive: Boolean
+}
+
+type Courier {
+  """id"""
+  id: Int!
+  isOnline: Boolean!
+  description: String
+  userId: Float!
+  courierType: CourierType!
+  tariffId: Int!
+  User: User!
+}
+
+enum CourierType {
+  WALKING
+  BICYCLE
+  CAR
+}
+
+enum OrderStatus {
+  REGISTERED
+  READY
+  CANCELED
+  ON_THE_WAY
+  DELIVERED
+}
+
+type Session {
+  """id"""
+  id: Int!
+  startTime: Date!
+  endTime: Date!
+  courierId: Float!
+}
+
+type Location {
+  """id"""
+  sessionId: Int!
+  courierId: Float!
+  longitude: Float!
+  latitude: Float!
+  updatedAt: Date!
+  firstName: String
+  lastName: String
+  middlename: String
+  courierType: String!
+}
+
+type OrderHistoryEntity {
+  """id"""
+  id: Int!
+  fromAddress: String!
+  courierPaymentCost: Float!
+  orderAmount: Float!
+  orderDeliveredAt: Date
+}
+
+type OrdersHistory {
+  datetime: Date
+  orders: [OrderHistoryEntity!]!
+  totalCourierPaymentCost: Float!
+  totalCashAmount: Float!
+}
+
+type Order {
+  fromAddressTitle: String
+  fromAddressPhone: String
+  toAddressTitle: String
+  toAddressPhone: String!
+
+  """id"""
+  id: Int!
+  status: OrderStatus!
+  deliveryCostForPartner: Float!
+  isPaymentCompleted: Boolean!
+  paymentTime: Date
+  paymentType: OrderPaymentType
+  isPrepaidToPartner: Boolean!
+  fromAddress: String!
+  fromLongitude: Float
+  fromLatitude: Float
+  toAddress: String!
+  toLongitude: Float
+  toLatitude: Float
+  approximateReadyTime: Int
+  createdAt: Date!
+  updatedAt: Date!
+  deliveryDistance: Float!
+  courierPaymentCost: Float!
+  orderAmount: Float!
+  deliveryCostForCustomer: Float!
+  organizationId: Float!
+  organizationServiceOrderId: String
+  courierId: Int
+  customerComment: String
+  orderDescription: String
+  orderReadyAt: Date
+  orderCanceledAt: Date
+  orderPickedAt: Date
+  orderDeliveredAt: Date
+  courierArrivedAt: Date
+  courierPickedAt: Date
+  courierDeliveredAt: Date
+  courierClosedOrderAt: Date
+  shouldBeReadyAt: Date!
+  shouldBeDeliveredAt: Date!
+  deferredTo: Date
+}
+
+enum OrderPaymentType {
+  CASH
+  CARD
+  QR
+  MOBILE
+  ONLINE
+}
+
+type CourierTariff {
+  """id"""
+  id: Int!
+  name: String!
+  description: String
+  loadCost: Float!
+  unloadCost: Float!
+  distanceCost: Float!
+  isActive: Boolean!
+}
+
+type Organization {
+  """id"""
+  id: Int!
+  name: String!
+  type: OrganizationType!
+  inn: String!
+  description: String
+  ownerId: String!
+  tariffId: String!
+}
+
+enum OrganizationType {
+  RESTAURANT
+  ONLINE_STORE
+  GROCERIES
+}
+
+type OrganizationTariff {
+  """id"""
+  id: Int!
+  name: String!
+  description: String
+  loadCost: Float!
+  unloadCost: Float!
+  distanceCost: Float!
+  acquiringCost: Float!
+  isActive: Boolean!
+}
+
+type FirebaseCloud {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type TokensDto {
+  accessToken: String!
+  refreshToken: String!
+  userId: Float!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  getAllUsers: [User!]!
+  getUserById(id: Int!): User!
+  courierSessionExists: Boolean!
+  getAllCourierLocations: [Location!]!
+  findCourierByParams(getByParamsCourierInput: GetByParamsCourierInput!): Courier!
+  getCourierByUserId(userId: Int!): Courier!
+  getAllCouriers: [Courier!]!
+  getCourier(id: Int!): Courier!
+  sessions: [Session!]!
+  session(id: Int!): Session!
+  getOrderByCourierId(id: Int!): Order!
+  getAllActiveOrdersByCourier: [Order!]!
+  getAllDeliveredOrdersByCourier: [OrdersHistory!]!
+  getAllOrders: [Order!]!
+  getOrders(getOrdersInput: GetOrdersInput!): [Order!]!
+  getOrder(id: Int!): Order!
+  getAllCourierTariffs: [CourierTariff!]!
+  getCourierTariff(id: Int!): CourierTariff!
+  getAllOrganizations: [Organization!]!
+  getOrganizationById(id: Int!): Organization!
+  getAllOrganizationTariffs: [OrganizationTariff!]!
+  getOrganizationTariff(id: Int!): OrganizationTariff!
+  firebaseCloud(id: Int!): FirebaseCloud!
+}
+
+input GetByParamsCourierInput {
+  firstName: String!
+  lastName: String!
+}
+
+input GetOrdersInput {
+  from: String = null
+  to: String = null
+  courierId: Int = null
+  organizationId: Int = null
+  isNotCompleted: Boolean = null
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUserById(id: Int!): User!
+  changePassword(id: Int!, password: String!): Int!
+  startCourierSession(location: UpdateLocationInput!): Session!
+  updateCurrentLocation(location: UpdateLocationInput!): [Location!]!
+  endCourierSession: [Location!]!
+  createCourier(createCourierInput: CreateCourierInput!): Courier!
+  updateCourier(updateCourierInput: UpdateCourierInput!): Courier!
+  removeCourier(id: Int!): Courier!
+  createSession(createSessionInput: CreateSessionInput!): Session!
+  removeSession(id: Int!): Session!
+  changeOrderStatus(id: Float!, status: OrderStatus!): Order!
+  assignCourier(assignCourierInput: AssignCourierOrderInputInput!): Order!
+  unAssignCourier(orderId: Int!): Order!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  removeOrder(id: Int!): Order!
+  partnerCreateOrder(partnerCreateOrder: CreateOrderInput!): Order!
+  partnerUpdateOrder(partnerUpdateOrder: PartnerUpdateOrderInput!): Order!
+  createCourierTariff(createCourierTariffInput: CreateCourierTariffInput!): CourierTariff!
+  updateCourierTariff(updateCourierTariffInput: UpdateCourierTariffInput!): CourierTariff!
+  removeCourierTariff(id: Int!): Void!
+  createOrganization(createOrganizationInput: CreateOrganizationInput!): Organization!
+  updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): Organization!
+  removeOrganizationById(id: Int!): Organization!
+  createOrganizationTariff(createOrganizationTariffInput: CreateOrganizationTariffInput!): OrganizationTariff!
+  updateOrganizationTariff(updateOrganizationTariffInput: UpdateOrganizationTariffInput!): OrganizationTariff!
+  removeOrganizationTariff(id: Int!): OrganizationTariff!
+  sendFirebaseCloudToken(registrationToken: String!): Boolean!
+  createFirebaseCloud(createFirebaseCloudInput: CreateFirebaseCloudInput!): FirebaseCloud!
+  updateFirebaseCloud(updateFirebaseCloudInput: UpdateFirebaseCloudInput!): FirebaseCloud!
+  removeFirebaseCloud(id: Int!): FirebaseCloud!
+  signup(createUserInput: CreateUserInput!): TokensDto!
+  login(loginUserInput: LoginUserInput!): TokensDto!
+  logout: Int!
+  refreshTokens: TokensDto!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  firstName: String
+  lastName: String
+  middlename: String
+  phone: String
+  email: String
+  role: String!
+  isActive: Boolean = true
+}
+
+input UpdateUserInput {
+  username: String
+  password: String
+  firstName: String
+  lastName: String
+  middlename: String
+  phone: String
+  email: String
+  role: String
+  isActive: Boolean = true
+  id: Int!
+}
+
+input UpdateLocationInput {
+  longitude: Float!
+  latitude: Float!
+}
+
+input CreateCourierInput {
+  userId: Int!
+  description: String = null
+  isOnline: Boolean = false
+  tariffId: Int!
+  courierType: String!
+}
+
+input UpdateCourierInput {
+  userId: Int
+  description: String = null
+  isOnline: Boolean = false
+  tariffId: Int
+  courierType: String
+  id: Int!
+}
+
+input CreateSessionInput {
+  startTime: Date = "2023-03-28T10:37:18.417Z"
+  endTime: Date = null
+  courierId: Float!
+}
+
+input AssignCourierOrderInputInput {
+  courierId: Int!
+  id: Int!
+}
+
+input CreateOrderInput {
+  fromAddressTitle: String = null
+  fromAddressPhone: String = null
+  toAddressTitle: String = null
+  toAddressPhone: String!
+  status: String = "REGISTERED"
+  orderDescription: String = ""
+  deliveryCostForPartner: Int = 0
+  deliveryCostForCustomer: Int = 0
+  courierPaymentCost: Int = 0
+  isPaymentCompleted: Boolean = false
+  paymentType: String = null
+  isPrepaidToPartner: Boolean = false
+  orderAmount: Float!
+  fromAddress: String!
+  fromLongitude: Float = 0
+  fromLatitude: Float = 0
+  toAddress: String!
+  toLongitude: Float = 0
+  toLatitude: Float = 0
+  deliveryDistance: Int = 0
+  customerComment: String = ""
+  organizationId: Int!
+  organizationServiceOrderId: String = null
+  courierId: Int = null
+  approximateReadyTime: Int = 0
+  deferredTo: Date = null
+}
+
+input UpdateOrderInput {
+  id: Int
+  fromAddressTitle: String
+  toAddressTitle: String
+  toAddressPhone: String
+  status: String
+  orderDescription: String
+  deliveryCostForPartner: Int
+  deliveryCostForCustomer: Int
+  courierPaymentCost: Int
+  isPaymentCompleted: Boolean
+  paymentType: String
+  isPrepaidToPartner: Boolean
+  orderAmount: Int
+  fromAddress: String
+  fromLongitude: Float
+  fromLatitude: Float
+  toAddress: String
+  toLongitude: Float
+  toLatitude: Float
+  deliveryDistance: Int
+  customerComment: String
+  organizationId: Int
+  organizationServiceOrderId: String
+  courierId: Int
+  approximateReadyTime: Int
+  orderReadyAt: Date
+  orderCanceledAt: Date
+  orderPickedAt: Date
+  orderDeliveredAt: Date
+  courierArrivedAt: Date
+  courierPickedAt: Date
+  courierDeliveredAt: Date
+  courierClosedOrderAt: Date
+}
+
+input PartnerUpdateOrderInput {
+  id: Int
+  status: String
+}
+
+input CreateCourierTariffInput {
+  name: String!
+  description: String = null
+  loadCost: Float = 0
+  unloadCost: Float = 0
+  distanceCost: Float = 0
+  isActive: Boolean = true
+}
+
+input UpdateCourierTariffInput {
+  id: Int!
+  name: String
+  description: String
+  loadCost: Float
+  unloadCost: Float
+  distanceCost: Float
+  isActive: Boolean
+}
+
+"""Represents NULL values"""
+scalar Void
+
+input CreateOrganizationInput {
+  name: String!
+  type: OrganizationType!
+  description: String = null
+  inn: String!
+  ownerId: Int!
+  tariffId: Int!
+}
+
+input UpdateOrganizationInput {
+  name: String
+  type: OrganizationType
+  description: String = null
+  inn: String
+  ownerId: Int
+  tariffId: Int
+  id: Int!
+}
+
+input CreateOrganizationTariffInput {
+  name: String!
+  description: String = null
+  loadCost: Float = 0
+  unloadCost: Float = 0
+  distanceCost: Float = 0
+  isActive: Boolean = true
+  acquiringCost: Float = 0
+}
+
+input UpdateOrganizationTariffInput {
+  id: Int!
+  name: String
+  description: String
+  loadCost: Float
+  unloadCost: Float
+  distanceCost: Float
+  acquiringCost: Float
+  isActive: Boolean
+}
+
+input CreateFirebaseCloudInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateFirebaseCloudInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+type Subscription {
+  locationAdded: [Location!]!
+  newCourierOrders: Order!
+  updatedCourierOrders: Order!
+  unAssignedCourierOrders: Order!
+  newOrders: Order!
+  updatedOrders: Order!
+}

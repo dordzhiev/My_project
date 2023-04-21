@@ -1,0 +1,20 @@
+fragment Order on Order {
+    id
+    status
+    paymentType
+    orderAmount
+    deliveryCostForCustomer
+    isPaymentCompleted
+    isPrepaidToPartner
+    createdAt
+    expectedReadyTime: shouldBeReadyAt
+    expectedDeliveryTime: shouldBeDeliveredAt
+    restaurantAddress: fromAddress
+    restaurantName: fromAddressTitle
+    restaurantPhoneNumber: fromAddressPhone
+    customerAddress: toAddress
+    customerName: toAddressTitle
+    customerPhoneNumber: toAddressPhone
+    orderDescription
+    customerComment
+}

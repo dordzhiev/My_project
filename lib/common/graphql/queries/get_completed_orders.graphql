@@ -1,0 +1,10 @@
+query GetCompletedOrders ($id: Int!){
+    getCompletedOrders:getOrders(
+        getOrdersInput: {
+            courierId: $id,
+            isNotCompleted: false,
+        }
+    ){
+        ...Order
+    }
+}

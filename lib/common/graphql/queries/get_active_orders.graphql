@@ -1,0 +1,5 @@
+query GetActiveOrders {
+    getActiveOrders: getAllActiveOrdersByCourier {
+        ...Order
+    }
+}

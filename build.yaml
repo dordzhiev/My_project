@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          scalars:
+            Date:
+              type: DateTime
+          clients:
+            - graphql
+          addTypenameExcludedPaths:
+            - query
+            - mutation
+            - subscription

@@ -1,0 +1,5 @@
+mutation ChangeOrderStatus ($id:Float!,$status:OrderStatus!){
+    changeOrderStatus(id:$id,status: $status ){
+        status
+    }
+}
