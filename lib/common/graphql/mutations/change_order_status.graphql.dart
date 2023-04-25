@@ -6,7 +6,7 @@ import 'package:graphql/client.dart' as graphql;
 class Variables$Mutation$ChangeOrderStatus {
   factory Variables$Mutation$ChangeOrderStatus({
     required double id,
-    required Enum$OrderStatus status,
+    required String status,
   }) =>
       Variables$Mutation$ChangeOrderStatus._({
         r'id': id,
@@ -21,20 +21,20 @@ class Variables$Mutation$ChangeOrderStatus {
     final l$id = data['id'];
     result$data['id'] = (l$id as num).toDouble();
     final l$status = data['status'];
-    result$data['status'] = fromJson$Enum$OrderStatus((l$status as String));
+    result$data['status'] = (l$status as String);
     return Variables$Mutation$ChangeOrderStatus._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
   double get id => (_$data['id'] as double);
-  Enum$OrderStatus get status => (_$data['status'] as Enum$OrderStatus);
+  String get status => (_$data['status'] as String);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
     final l$status = status;
-    result$data['status'] = toJson$Enum$OrderStatus(l$status);
+    result$data['status'] = l$status;
     return result$data;
   }
 
@@ -88,7 +88,7 @@ abstract class CopyWith$Variables$Mutation$ChangeOrderStatus<TRes> {
 
   TRes call({
     double? id,
-    Enum$OrderStatus? status,
+    String? status,
   });
 }
 
@@ -113,7 +113,7 @@ class _CopyWithImpl$Variables$Mutation$ChangeOrderStatus<TRes>
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as double),
         if (status != _undefined && status != null)
-          'status': (status as Enum$OrderStatus),
+          'status': (status as String),
       }));
 }
 
@@ -125,7 +125,7 @@ class _CopyWithStubImpl$Variables$Mutation$ChangeOrderStatus<TRes>
 
   call({
     double? id,
-    Enum$OrderStatus? status,
+    String? status,
   }) =>
       _res;
 }
@@ -255,7 +255,7 @@ const documentNodeMutationChangeOrderStatus = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'status')),
         type: NamedTypeNode(
-          name: NameNode(value: 'OrderStatus'),
+          name: NameNode(value: 'String'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),

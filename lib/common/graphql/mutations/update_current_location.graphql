@@ -1,0 +1,7 @@
+mutation UpdateCurrentLocation($latitude: Float!, $longitude: Float!) {
+    updateCurrentLocation(
+        location: { latitude: $latitude, longitude: $longitude }
+    ) {
+        __typename
+    }
+}
