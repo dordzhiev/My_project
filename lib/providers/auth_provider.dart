@@ -22,13 +22,9 @@ class AuthProvider with ChangeNotifier {
     try {
       await _apiService.login(username, password);
     } catch (e) {
-      _errorMessage = 'Не удалось авторизироваться:\n$e';
+      _errorMessage = 'Не удалось авторизоваться:\n$e';
     }
     _isLoading = false;
     notifyListeners();
-  }
-
-  void logout() async {
-    _apiService.logout();
   }
 }
