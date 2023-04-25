@@ -1,4 +1,5 @@
 import 'package:courier_app/common/widgets/bottom_navigation.dart';
+import 'package:courier_app/common/widgets/error_dialog.dart';
 import 'package:courier_app/providers/history_provider.dart';
 import 'package:courier_app/screens/order_details_screen/order_details_screen.dart';
 import 'package:courier_app/screens/orders_screen/order_card.dart';
@@ -19,8 +20,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<HistoryProvider>().fetchHistory();
+    final historyProvider = context.read<HistoryProvider>();
+    Future.microtask(() async {
+      await historyProvider.fetchHistory();
+      if (historyProvider.hasError && context.mounted) {
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return ErrorDialog(
+              context.read<HistoryProvider>().errorMessage,
+            );
+          },
+        );
+      }
     });
   }
 

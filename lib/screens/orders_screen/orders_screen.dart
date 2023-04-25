@@ -20,6 +20,7 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen>
     with AutomaticKeepAliveClientMixin<OrdersScreen> {
+
   @override
   bool get wantKeepAlive => true;
 
@@ -29,8 +30,8 @@ class _OrdersScreenState extends State<OrdersScreen>
     Future.microtask(() async {
       final ordersProvider = context.read<OrdersProvider>();
       await ordersProvider.fetchOrders();
-      if (ordersProvider.hasError&&context.mounted) {
-        showDialog(
+      if (ordersProvider.hasError && context.mounted) {
+        await showDialog(
           context: context,
           builder: (context) => ErrorDialog(ordersProvider.errorMessage),
         );
