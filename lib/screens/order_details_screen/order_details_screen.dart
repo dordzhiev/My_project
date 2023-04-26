@@ -1,9 +1,9 @@
 import 'package:courier_app/common/graphql/fragments/order.graphql.dart';
 import 'package:courier_app/common/graphql/schema.graphql.dart';
 import 'package:courier_app/common/widgets/error_dialog.dart';
-import 'package:courier_app/screens/order_details_screen/contact_buttons.dart';
-import 'package:courier_app/screens/order_details_screen/details_content.dart';
-import 'package:courier_app/screens/order_details_screen/details_content_part.dart';
+import 'package:courier_app/screens/order_details_screen/widgets/contact_buttons.dart';
+import 'package:courier_app/screens/order_details_screen/widgets/details_content.dart';
+import 'package:courier_app/screens/order_details_screen/widgets/details_content_part.dart';
 import 'package:courier_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -43,8 +43,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 _buildOrderDetails(),
                 _buildRestaurantDetails(),
                 _buildCustomerDetails(),
-                if (order.orderDescription != null ||
-                    order.customerComment != null)
+                if (order.orderDescription != null || order.customerComment != null)
                   _buildComments(),
               ],
             ),
@@ -166,10 +165,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   }
 
   Widget _buildRestaurantDetails() {
+    final formatted = _formatPhoneNumber(order.restaurantPhoneNumber!);
     return DetailsContentPart(
       icon: Icons.storefront_outlined,
       buttons: _buildHorizontalButtonsRow(
-        phoneNumber: order.restaurantPhoneNumber,
+        phoneNumber: formatted,
         address: order.restaurantAddress,
       ),
       children: [
@@ -181,17 +181,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ),
           ),
         Text(order.restaurantAddress),
-        if (order.restaurantPhoneNumber != null)
-          Text(_formatPhoneNumber(order.restaurantPhoneNumber!)),
+        if (order.restaurantPhoneNumber != null) Text(formatted),
       ],
     );
   }
 
   Widget _buildCustomerDetails() {
+    final formatted = _formatPhoneNumber(order.customerPhoneNumber);
     return DetailsContentPart(
       icon: Icons.person,
       buttons: _buildHorizontalButtonsRow(
-        phoneNumber: order.customerPhoneNumber,
+        phoneNumber: formatted,
         address: order.customerAddress,
       ),
       children: [
@@ -203,7 +203,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ),
           ),
         Text(order.customerAddress),
-        Text(_formatPhoneNumber(order.customerPhoneNumber)),
+        Text(formatted),
       ],
     );
   }
@@ -270,8 +270,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   String _formatPhoneNumber(String rawString) {
     String digitsOnly = rawString.replaceAll(RegExp(r'\D+'), '');
-    String countryCode =
-        digitsOnly.startsWith('8') ? '+7' : '+${digitsOnly[0]}';
+    String countryCode = digitsOnly.startsWith('8') ? '+7' : '+${digitsOnly[0]}';
     return '$countryCode (${digitsOnly.substring(1, 4)}) ${digitsOnly.substring(4, 7)}-${digitsOnly.substring(7, 9)}-${digitsOnly.substring(9)}';
   }
 }

@@ -2,7 +2,7 @@ import 'package:courier_app/common/widgets/bottom_navigation.dart';
 import 'package:courier_app/common/widgets/error_dialog.dart';
 import 'package:courier_app/providers/history_provider.dart';
 import 'package:courier_app/screens/order_details_screen/order_details_screen.dart';
-import 'package:courier_app/screens/orders_screen/order_card.dart';
+import 'package:courier_app/screens/orders_screen/widgets/order_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

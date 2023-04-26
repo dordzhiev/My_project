@@ -1,3 +1,4 @@
+import 'package:courier_app/utils/geo_utils.dart';
 import 'package:courier_app/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -13,13 +14,13 @@ class ContactButtons extends StatelessWidget {
     final buttons = <Widget>[
       if (address != null)
         OutlinedButton.icon(
-          onPressed: () => launchUrlString('https://www.google.com/maps/'),
+          onPressed: () async => await _openInMaps(context),
           icon: const Icon(Icons.pin_drop_outlined),
           label: const Text('На карте'),
         ),
       if (phoneNumber != null)
         OutlinedButton.icon(
-          onPressed: () => launchUrlString('https://www.google.com/maps/'),
+          onPressed: () async => await _openInDialer(context),
           label: const Text('Позвонить'),
           icon: const Icon(Icons.phone),
         ),
@@ -29,5 +30,25 @@ class ContactButtons extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(children: separated),
     );
+  }
+
+  Future<void> _openInDialer(BuildContext context) async {
+    try {
+      await launchUrlString('tel:$phoneNumber');
+    } catch (e) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    }
+  }
+
+  Future<void> _openInMaps(BuildContext context) async {
+    try {
+      await GeoUtils.openInMaps("${address!}");
+    } catch (e) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    }
   }
 }
