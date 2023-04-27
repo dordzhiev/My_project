@@ -1,0 +1,8 @@
+fragment PersonalInformation on User {
+    username
+    firstname: firstName
+    lastname: lastName
+    middlename
+    phoneNumber: phone
+    email
+}

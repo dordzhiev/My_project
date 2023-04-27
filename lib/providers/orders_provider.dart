@@ -18,12 +18,17 @@ class OrdersProvider extends ChangeNotifier {
 
   Future<List<Fragment$Order>> fetchOrders() async {
     _errorMessage = null;
+
+    _orders = _apiService.readActiveOrders();
+    notifyListeners();
+
     try {
-      _orders = await _apiService.getActiveOrders();
+      _orders = await _apiService.fetchActiveOrders();
     } catch (e) {
       _errorMessage = e.toString();
     }
     notifyListeners();
+
     return _orders;
   }
 }

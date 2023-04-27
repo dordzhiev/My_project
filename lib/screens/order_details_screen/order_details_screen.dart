@@ -29,6 +29,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String?> comments = [order.orderDescription, order.customerComment]
+      ..removeWhere((element) => element == null || element.isEmpty);
     return Scaffold(
       appBar: AppBar(
         title: Text('Заказ #${order.id}'),
@@ -43,8 +45,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 _buildOrderDetails(),
                 _buildRestaurantDetails(),
                 _buildCustomerDetails(),
-                if (order.orderDescription != null || order.customerComment != null)
-                  _buildComments(),
+                if (comments.isNotEmpty) _buildComments(comments),
               ],
             ),
           ],
@@ -208,18 +209,22 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     );
   }
 
-  Widget _buildComments() {
-    if (order.orderDescription != null || order.customerComment != null) {
-      return DetailsContentPart(
-        icon: null,
-        children: [
-          Text('Комментарии', style: Theme.of(context).textTheme.titleLarge),
-          if (order.orderDescription != null) Text(order.orderDescription!),
-          if (order.customerComment != null) Text(order.customerComment!),
-        ],
-      );
+  Widget _buildComments(List<String?> comments) {
+    String _formatComment(String input) {
+      final lines = input.split('\n');
+      final trimmedLines = lines.map((line) => line.trimLeft());
+      final nonEmptyLines = trimmedLines.where((line) => line.isNotEmpty);
+      final result = nonEmptyLines.join('\n');
+      return result;
     }
-    return const SizedBox.shrink();
+
+    return DetailsContentPart(
+      icon: null,
+      children: [
+        Text('Комментарии', style: Theme.of(context).textTheme.titleLarge),
+        for (final comment in comments) Text(_formatComment(comment!)),
+      ],
+    );
   }
 
   String _getCurrentStatus() {

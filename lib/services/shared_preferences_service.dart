@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kAccessTokenKey = 'access_token';
 const kRefreshTokenKey = 'refresh_token';
 const kUsernameKey = 'username';
+const kPasswordKey = 'password';
 const kUserIdKey = 'userId';
 
 class SPService {
@@ -37,9 +38,25 @@ class SPService {
     }
   }
 
-  String get username => _preferences.getString(kUsernameKey) ?? '';
+  String? get username => _preferences.getString(kUsernameKey);
 
-  set username(value) => _preferences.setString(kUsernameKey, value);
+  set username(String? value) {
+    if (value != null) {
+      _preferences.setString(kUsernameKey, value);
+    } else {
+      _preferences.remove(kUsernameKey);
+    }
+  }
+
+  String? get password => _preferences.getString(kPasswordKey);
+
+  set password(String? value) {
+    if (value != null) {
+      _preferences.setString(kPasswordKey, value);
+    } else {
+      _preferences.remove(kPasswordKey);
+    }
+  }
 
   int? get userId => _preferences.getInt(kUserIdKey);
 

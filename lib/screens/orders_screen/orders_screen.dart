@@ -4,7 +4,6 @@ import 'package:courier_app/common/widgets/error_dialog.dart';
 import 'package:courier_app/providers/orders_provider.dart';
 import 'package:courier_app/screens/order_details_screen/order_details_screen.dart';
 import 'package:courier_app/screens/orders_screen/widgets/order_card.dart';
-import 'package:courier_app/utils/order_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +19,6 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen>
     with AutomaticKeepAliveClientMixin<OrdersScreen> {
-
   @override
   bool get wantKeepAlive => true;
 
@@ -49,7 +47,7 @@ class _OrdersScreenState extends State<OrdersScreen>
       ),
       body: Consumer<OrdersProvider>(
         builder: (context, ordersProvider, child) {
-          List<Fragment$Order> orders = generateOrderFragments();
+          List<Fragment$Order> orders = ordersProvider.orders;
           return orders.isNotEmpty
               ? ListView.builder(
                   itemCount: orders.length,

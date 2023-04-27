@@ -1,4 +1,4 @@
-import 'package:courier_app/common/graphql/mutations/refresh_tokens.graphql.dart';
+import 'package:courier_app/common/graphql/mutations/authenticate.graphql.dart';
 import 'package:courier_app/services/shared_preferences_service.dart';
 import 'package:courier_app/utils/graphql_utils.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +13,7 @@ class GraphQLService {
 
   final SPService _spService = GetIt.instance<SPService>();
   late final GraphQLClient _client;
-  late final GraphQLClient _refreshClient;
+  // late final GraphQLClient _refreshClient;
 
   GraphQLService._();
 
@@ -37,10 +37,10 @@ class GraphQLService {
         query: Policies(fetch: FetchPolicy.networkOnly),
       ),
     );
-    _refreshClient = GraphQLClient(
-      link: AuthLink(getToken: _getRefreshToken).concat(HttpLink(uri)),
-      cache: GraphQLCache(store: store),
-    );
+    // _refreshClient = GraphQLClient(
+    //   link: AuthLink(getToken: _getRefreshToken).concat(HttpLink(uri)),
+    //   cache: GraphQLCache(store: store),
+    // );
   }
 
   Link _createLink() {
@@ -53,7 +53,7 @@ class GraphQLService {
 
   String _getAccessToken() => 'Bearer ${_spService.accessToken}';
 
-  String _getRefreshToken() => 'Bearer ${_spService.refreshToken}';
+  // String _getRefreshToken() => 'Bearer ${_spService.refreshToken}';
 
   Stream<Response>? _onGraphQLError(
     Request request,
@@ -71,13 +71,18 @@ class GraphQLService {
   }
 
   Future<void> _updateToken() async {
-    final result = await _refreshClient.mutate$RefreshTokens(
-      Options$Mutation$RefreshTokens(),
+    final result = await _client.mutate$Authenticate(
+      Options$Mutation$Authenticate(
+        variables: Variables$Mutation$Authenticate(
+          username: _spService.username!,
+          password: _spService.password!,
+        ),
+      ),
     );
     if (result.hasException) {
       GraphQLUtils.processException(result);
     }
-    _spService.accessToken = result.parsedData?.refreshTokens.accessToken;
-    _spService.refreshToken = result.parsedData?.refreshTokens.refreshToken;
+    _spService.accessToken = result.parsedData?.login.accessToken;
+    _spService.refreshToken = result.parsedData?.login.refreshToken;
   }
 }

@@ -49,7 +49,7 @@ class APIService {
     _spService.userId = null;
   }
 
-  Future<List<Fragment$Order>> getActiveOrders() async {
+  Future<List<Fragment$Order>> fetchActiveOrders() async {
     final result = await client.query$GetActiveOrders(
       Options$Query$GetActiveOrders(),
     );
@@ -57,6 +57,11 @@ class APIService {
       GraphQLUtils.processException(result);
     }
     return result.parsedData!.getActiveOrders;
+  }
+
+  List<Fragment$Order> readActiveOrders() {
+    final result = client.readQuery$GetActiveOrders();
+    return result?.getActiveOrders ?? [];
   }
 
   Future<Enum$OrderStatus> changeOrderStatus(
@@ -77,7 +82,7 @@ class APIService {
     return result.parsedData!.changeOrderStatus.status;
   }
 
-  Future<List<Fragment$Order>> getCompletedOrders() async {
+  Future<List<Fragment$Order>> fetchCompletedOrders() async {
     final result = await client.query$GetCompletedOrders(
       Options$Query$GetCompletedOrders(
         variables: Variables$Query$GetCompletedOrders(id: _spService.userId!),
@@ -86,7 +91,25 @@ class APIService {
     if (result.hasException) {
       GraphQLUtils.processException(result);
     }
-    return result.parsedData!.getCompletedOrders;
+    return result.parsedData!.getCompletedOrders
+        .where((element) => {Enum$OrderStatus.DELIVERED, Enum$OrderStatus.CANCELED}
+            .contains(element.status))
+        .toList();
+  }
+
+  List<Fragment$Order> readCompletedOrders() {
+    final result = client.readQuery$GetCompletedOrders(
+      variables: Variables$Query$GetCompletedOrders(id: _spService.userId!),
+    );
+    return result?.getCompletedOrders
+            .where(
+              (element) => {
+                Enum$OrderStatus.DELIVERED,
+                Enum$OrderStatus.CANCELED,
+              }.contains(element.status),
+            )
+            .toList() ??
+        [];
   }
 
   Future<void> startSession(double latitude, double longitude) async {

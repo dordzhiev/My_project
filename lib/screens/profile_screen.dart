@@ -4,23 +4,18 @@ import 'package:courier_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   static const String routeName = '/profile';
   static const String title = 'Профиль';
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(ProfileScreen.title),
+        title: const Text(title),
         // actions: [
         //   IconButton(
         //     icon: const Icon(Icons.exit_to_app),
@@ -90,33 +85,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          Consumer<ProfileProvider>(builder: (context, profileProvider, child) {
-        return !profileProvider.isAcceptingOrders
-            ? FloatingActionButton.extended(
-                backgroundColor: profileProvider.isLoading
-                    ? Colors.grey.shade400
-                    : Colors.green.shade700,
-                foregroundColor: const Color(0xFFFFFFFF),
-                label: const Text("Принимать заказы"),
-                icon: const Icon(Icons.directions_bike),
-                onPressed: profileProvider.isLoading
-                    ? null
-                    : profileProvider.handleAcceptOrders,
-              )
-            : FloatingActionButton.extended(
-                backgroundColor: profileProvider.isLoading
-                    ? Colors.grey.shade400
-                    : Colors.red.shade700,
-                foregroundColor: const Color(0xFFFFFFFF),
-                label: const Text("Не принимать заказы"),
-                icon: const Icon(Icons.close),
-                onPressed: profileProvider.isLoading
-                    ? null
-                    : profileProvider.handleDeclineOrders,
-              );
-      }),
+      floatingActionButton: AcceptingOrdersButton(),
       bottomNavigationBar: const BottomNavigation(),
     );
+  }
+}
+
+class AcceptingOrdersButton extends StatefulWidget {
+  const AcceptingOrdersButton({
+    super.key,
+  });
+
+  @override
+  State<AcceptingOrdersButton> createState() => _AcceptingOrdersButtonState();
+}
+
+class _AcceptingOrdersButtonState extends State<AcceptingOrdersButton> {
+  ProfileProvider? profileProvider;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (profileProvider != null && profileProvider!.errorMessage.isNotEmpty) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        SnackBar(content: Text(profileProvider!.errorMessage)),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final profileProvider = context.watch<ProfileProvider>();
+    this.profileProvider = profileProvider;
+    return !profileProvider.isAcceptingOrders
+        ? FloatingActionButton.extended(
+            backgroundColor:
+                profileProvider.isLoading ? Colors.grey.shade400 : Colors.green.shade700,
+            foregroundColor: const Color(0xFFFFFFFF),
+            label: const Text("Принимать заказы"),
+            icon: const Icon(Icons.directions_bike),
+            onPressed:
+                profileProvider.isLoading ? null : profileProvider.handleAcceptOrders,
+          )
+        : FloatingActionButton.extended(
+            backgroundColor:
+                profileProvider.isLoading ? Colors.grey.shade400 : Colors.red.shade700,
+            foregroundColor: const Color(0xFFFFFFFF),
+            label: const Text("Не принимать заказы"),
+            icon: const Icon(Icons.close),
+            onPressed:
+                profileProvider.isLoading ? null : profileProvider.handleDeclineOrders,
+          );
   }
 }

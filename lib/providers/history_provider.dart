@@ -18,12 +18,16 @@ class HistoryProvider extends ChangeNotifier {
 
   Future<List<Fragment$Order>> fetchHistory() async {
     _errorMessage = null;
+    _orders = _apiService.readCompletedOrders();
+    notifyListeners();
+
     try {
-      _orders = await _apiService.getCompletedOrders();
+      _orders = await _apiService.fetchCompletedOrders();
     } catch (e) {
       _errorMessage = e.toString();
     }
     notifyListeners();
+
     return _orders;
   }
 }
