@@ -1,0 +1,91 @@
+@startuml
+class BuildContext {
+  __
+  +read<Object>()
+  +watch<Object>()
+  +select<Object>()
+}
+
+class OrderListProvider {
+  -apiService: APIService
+  ..
+  -orders: List<Order>
+  -isLoading: bool!
+  -errorMessage: String
+  ..
+  +orders: UnmodifiableListView<Order>
+  +isLoading: bool!
+  +errorMessage: String!
+  __
+  +fetchOrderList(): void
+}
+
+class OrderHistoryProvider {
+  -apiService: APIService
+  ..
+  -orders: List<Order>
+  -isLoading: bool!
+  -errorMessage: String
+  ..
+  +orders: UnmodifiableListView<Order>
+  +isLoading: bool!
+  +errorMessage: String!
+  __
+  +fetchOrderHistory(): void
+}
+
+class ProfileProvider {
+  -apiService: APIService
+  ..
+  -isLoading: bool!
+  -errorMessage: String
+  ..
+  +personalInfo: PersonalInfo
+  +isLoading: bool!
+  +errorMessage: String!
+  __
+  +fetchPersonalInfo()
+  +updatePersonalInfo()
+}
+
+class Order {
+  +id: Integer
+  +status: OrderStatus
+  +paymentType: PaymentMethod
+  +orderAmount: Double
+  +deliveryCostForCustomer: Double
+  +isPaymentCompleted: bool
+  +isPrepaidToPartner: bool
+  +createdAt: DateTime
+  +shouldBeReadyAt: DateTime
+  +shouldBeDeliveredAt: DateTime
+  +fromAddress: String
+  +fromAddressTitle: String
+  +fromAddressPhone: String
+  +toAddress: String
+  +toAddressTitle: String
+  +toAddressPhone: String
+  +orderDescription: String
+  +customerComment: String
+}
+
+enum OrderStatus {
+  NEW,
+  ASSIGNED,
+  IN_PROGRESS,
+  COMPLETED,
+  PAID,
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH,
+  CARD,
+  ONLINE
+}
+
+BuildContext --* OrderListProvider
+BuildContext --* OrderHistoryProvider
+BuildContext --* ProfileProvider
+
+@enduml

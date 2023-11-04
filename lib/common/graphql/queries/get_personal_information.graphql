@@ -1,0 +1,5 @@
+query GetPersonalInformation($id: Int!) {
+    getUserById(id: $id) {
+        ...PersonalInfo
+    }
+}

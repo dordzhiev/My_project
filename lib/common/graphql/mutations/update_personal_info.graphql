@@ -1,0 +1,29 @@
+mutation UpdatePersonalInfo(
+    $username: String
+    $password: String
+    $firstName: String
+    $lastName: String
+    $middlename: String
+    $phone: String
+    $email: String
+    $role: String
+    $isActive: Boolean = true
+    $id: Int!
+) {
+    updateUser(
+        updateUserInput: {
+            username: $username
+            password: $password
+            firstName: $firstName
+            lastName: $lastName
+            middlename: $middlename
+            phone: $phone
+            email: $email
+            role: $role
+            isActive: $isActive
+            id: $id
+        }
+    ) {
+        ...PersonalInfo
+    }
+}

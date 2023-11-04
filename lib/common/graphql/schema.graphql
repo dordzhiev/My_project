@@ -236,7 +236,7 @@ type Mutation {
   removeCourier(id: Int!): Courier!
   createSession(createSessionInput: CreateSessionInput!): Session!
   removeSession(id: Int!): Session!
-  changeOrderStatus(id: Float!, status: OrderStatus!): Order!
+  changeOrderStatus(id: Float!, status: String!): Order!
   assignCourier(assignCourierInput: AssignCourierOrderInputInput!): Order!
   unAssignCourier(orderId: Int!): Order!
   createOrder(createOrderInput: CreateOrderInput!): Order!

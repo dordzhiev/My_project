@@ -1,0 +1,14 @@
+query GetDeliveredOrders {
+    deliveredOrders: getAllDeliveredOrdersByCourier {
+        datetime
+        orders {
+            id
+            fromAddress
+            courierPaymentCost
+            orderAmount
+            orderDeliveredAt
+        }
+        totalCourierPaymentCost
+        totalCashAmount
+    }
+}

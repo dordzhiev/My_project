@@ -22,7 +22,6 @@ class Fragment$Order {
     required this.customerPhoneNumber,
     this.orderDescription,
     this.customerComment,
-    this.$__typename = 'Order',
   });
 
   factory Fragment$Order.fromJson(Map<String, dynamic> json) {
@@ -44,7 +43,6 @@ class Fragment$Order {
     final l$customerPhoneNumber = json['customerPhoneNumber'];
     final l$orderDescription = json['orderDescription'];
     final l$customerComment = json['customerComment'];
-    final l$$__typename = json['__typename'];
     return Fragment$Order(
       id: (l$id as int),
       status: fromJson$Enum$OrderStatus((l$status as String)),
@@ -66,7 +64,6 @@ class Fragment$Order {
       customerPhoneNumber: (l$customerPhoneNumber as String),
       orderDescription: (l$orderDescription as String?),
       customerComment: (l$customerComment as String?),
-      $__typename: (l$$__typename as String),
     );
   }
 
@@ -105,8 +102,6 @@ class Fragment$Order {
   final String? orderDescription;
 
   final String? customerComment;
-
-  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -149,8 +144,6 @@ class Fragment$Order {
     _resultData['orderDescription'] = l$orderDescription;
     final l$customerComment = customerComment;
     _resultData['customerComment'] = l$customerComment;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -174,7 +167,6 @@ class Fragment$Order {
     final l$customerPhoneNumber = customerPhoneNumber;
     final l$orderDescription = orderDescription;
     final l$customerComment = customerComment;
-    final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$status,
@@ -194,7 +186,6 @@ class Fragment$Order {
       l$customerPhoneNumber,
       l$orderDescription,
       l$customerComment,
-      l$$__typename,
     ]);
   }
 
@@ -296,11 +287,6 @@ class Fragment$Order {
     if (l$customerComment != lOther$customerComment) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
     return true;
   }
 }
@@ -341,7 +327,6 @@ abstract class CopyWith$Fragment$Order<TRes> {
     String? customerPhoneNumber,
     String? orderDescription,
     String? customerComment,
-    String? $__typename,
   });
 }
 
@@ -377,7 +362,6 @@ class _CopyWithImpl$Fragment$Order<TRes>
     Object? customerPhoneNumber = _undefined,
     Object? orderDescription = _undefined,
     Object? customerComment = _undefined,
-    Object? $__typename = _undefined,
   }) =>
       _then(Fragment$Order(
         id: id == _undefined || id == null ? _instance.id : (id as int),
@@ -440,9 +424,6 @@ class _CopyWithImpl$Fragment$Order<TRes>
         customerComment: customerComment == _undefined
             ? _instance.customerComment
             : (customerComment as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
       ));
 }
 
@@ -471,7 +452,6 @@ class _CopyWithStubImpl$Fragment$Order<TRes>
     String? customerPhoneNumber,
     String? orderDescription,
     String? customerComment,
-    String? $__typename,
   }) =>
       _res;
 }
@@ -606,13 +586,6 @@ const fragmentDefinitionOrder = FragmentDefinitionNode(
     ),
     FieldNode(
       name: NameNode(value: 'customerComment'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    FieldNode(
-      name: NameNode(value: '__typename'),
       alias: null,
       arguments: [],
       directives: [],

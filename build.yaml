@@ -9,6 +9,7 @@ targets:
           clients:
             - graphql
           addTypenameExcludedPaths:
+            - fragment
             - query
             - mutation
             - subscription

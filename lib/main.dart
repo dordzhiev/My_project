@@ -1,13 +1,20 @@
+import 'package:courier_app/common/widgets/auth_checker.dart';
 import 'package:courier_app/providers/auth_provider.dart';
-import 'package:courier_app/providers/history_provider.dart';
-import 'package:courier_app/providers/navigation_provider.dart';
-import 'package:courier_app/providers/orders_provider.dart';
+import 'package:courier_app/providers/order_history_provider.dart';
+import 'package:courier_app/providers/order_list_provider.dart';
 import 'package:courier_app/providers/profile_provider.dart';
-import 'package:courier_app/utils/app_route.dart';
-import 'package:courier_app/utils/locator.dart';
+import 'package:courier_app/providers/working_status_provider.dart';
+import 'package:courier_app/screens/auth_screen.dart';
+import 'package:courier_app/screens/history/history_screen.dart';
+import 'package:courier_app/screens/home_page.dart';
+import 'package:courier_app/screens/orders/orders_screen.dart';
+import 'package:courier_app/screens/profile/profile_screen.dart';
+import 'package:courier_app/services/api_service.dart';
+import 'package:courier_app/services/locator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,10 +31,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
-        ChangeNotifierProvider(create: (context) => NavigationProvider()),
         ChangeNotifierProvider(create: (context) => ProfileProvider()),
-        ChangeNotifierProvider(create: (context) => OrdersProvider()),
-        ChangeNotifierProvider(create: (context) => HistoryProvider()),
+        ChangeNotifierProvider(create: (context) => WorkingStatusProvider()),
+        ChangeNotifierProvider(create: (context) => OrderListProvider()),
+        ChangeNotifierProvider(create: (context) => OrderHistoryProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -35,7 +42,6 @@ class MyApp extends StatelessWidget {
           fontFamily: "Open Sans",
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.lightBlue,
-            background: Colors.grey.shade100,
           ),
         ),
         initialRoute: '/',
@@ -44,4 +50,44 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Route<dynamic> generateRoute(RouteSettings settings) {
+  switch (settings.name) {
+    case '/':
+      return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          APIService apiService = GetIt.instance<APIService>();
+          return AuthChecker(
+            isAuthenticated: apiService.isAuthenticated,
+            loginScreen: AuthScreen(),
+            homeScreen: const HomePage(),
+          );
+        },
+      );
+    case AuthScreen.routeName:
+      return PageRouteBuilder(pageBuilder: (_, __, ___) {
+        return AuthScreen();
+      });
+    case OrdersScreen.routeName:
+      return PageRouteBuilder(pageBuilder: (_, __, ___) {
+        return const OrdersScreen();
+      });
+    case HistoryScreen.routeName:
+      return PageRouteBuilder(pageBuilder: (_, __, ___) {
+        return const HistoryScreen();
+      });
+    case ProfileScreen.routeName:
+      return PageRouteBuilder(pageBuilder: (_, __, ___) {
+        return const ProfileScreen();
+      });
+  }
+
+  return MaterialPageRoute(
+    builder: (_) => const Scaffold(
+      body: Center(
+        child: Text('Page not found'),
+      ),
+    ),
+  );
 }

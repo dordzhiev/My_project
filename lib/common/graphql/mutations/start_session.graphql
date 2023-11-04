@@ -1,0 +1,7 @@
+mutation StartSession($latitude: Float!, $longitude: Float!) {
+    startCourierSession(
+        location: { latitude: $latitude, longitude: $longitude }
+    ) {
+        __typename
+    }
+}
