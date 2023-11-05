@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AuthScreen extends StatelessWidget {
-  AuthScreen({Key? key}) : super(key: key);
+  AuthScreen({super.key});
 
   static const routeName = '/login';
   static const title = 'Авторизация';

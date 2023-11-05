@@ -21,7 +21,7 @@ static Future<Position> getPosition() async {
   static Future<void> openInMaps(
     String address,
   ) async {
-    late final location;
+    late final List<Location> location;
     try {
       location = await locationFromAddress(address);
       await launchUrl(

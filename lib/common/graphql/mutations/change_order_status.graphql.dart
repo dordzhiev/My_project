@@ -49,7 +49,7 @@ class Variables$Mutation$ChangeOrderStatus {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Mutation$ChangeOrderStatus) ||
+    if (other is! Variables$Mutation$ChangeOrderStatus ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -105,6 +105,7 @@ class _CopyWithImpl$Variables$Mutation$ChangeOrderStatus<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? status = _undefined,
@@ -121,8 +122,9 @@ class _CopyWithStubImpl$Variables$Mutation$ChangeOrderStatus<TRes>
     implements CopyWith$Variables$Mutation$ChangeOrderStatus<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ChangeOrderStatus(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     double? id,
     String? status,
@@ -144,10 +146,10 @@ class Mutation$ChangeOrderStatus {
   final Mutation$ChangeOrderStatus$changeOrderStatus changeOrderStatus;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$changeOrderStatus = changeOrderStatus;
-    _resultData['changeOrderStatus'] = l$changeOrderStatus.toJson();
-    return _resultData;
+    resultData['changeOrderStatus'] = l$changeOrderStatus.toJson();
+    return resultData;
   }
 
   @override
@@ -161,7 +163,7 @@ class Mutation$ChangeOrderStatus {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$ChangeOrderStatus) ||
+    if (other is! Mutation$ChangeOrderStatus ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -210,6 +212,7 @@ class _CopyWithImpl$Mutation$ChangeOrderStatus<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? changeOrderStatus = _undefined}) =>
       _then(Mutation$ChangeOrderStatus(
           changeOrderStatus:
@@ -217,6 +220,7 @@ class _CopyWithImpl$Mutation$ChangeOrderStatus<TRes>
                   ? _instance.changeOrderStatus
                   : (changeOrderStatus
                       as Mutation$ChangeOrderStatus$changeOrderStatus)));
+  @override
   CopyWith$Mutation$ChangeOrderStatus$changeOrderStatus<TRes>
       get changeOrderStatus {
     final local$changeOrderStatus = _instance.changeOrderStatus;
@@ -229,10 +233,12 @@ class _CopyWithStubImpl$Mutation$ChangeOrderStatus<TRes>
     implements CopyWith$Mutation$ChangeOrderStatus<TRes> {
   _CopyWithStubImpl$Mutation$ChangeOrderStatus(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Mutation$ChangeOrderStatus$changeOrderStatus? changeOrderStatus}) =>
       _res;
+  @override
   CopyWith$Mutation$ChangeOrderStatus$changeOrderStatus<TRes>
       get changeOrderStatus =>
           CopyWith$Mutation$ChangeOrderStatus$changeOrderStatus.stub(_res);
@@ -310,26 +316,21 @@ typedef OnMutationCompleted$Mutation$ChangeOrderStatus = FutureOr<void>
 class Options$Mutation$ChangeOrderStatus
     extends graphql.MutationOptions<Mutation$ChangeOrderStatus> {
   Options$Mutation$ChangeOrderStatus({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ChangeOrderStatus variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ChangeOrderStatus? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$ChangeOrderStatus? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ChangeOrderStatus>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -338,8 +339,6 @@ class Options$Mutation$ChangeOrderStatus
                         ? null
                         : _parserFn$Mutation$ChangeOrderStatus(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationChangeOrderStatus,
           parserFn: _parserFn$Mutation$ChangeOrderStatus,
         );
@@ -358,31 +357,22 @@ class Options$Mutation$ChangeOrderStatus
 class WatchOptions$Mutation$ChangeOrderStatus
     extends graphql.WatchQueryOptions<Mutation$ChangeOrderStatus> {
   WatchOptions$Mutation$ChangeOrderStatus({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ChangeOrderStatus variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ChangeOrderStatus? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationChangeOrderStatus,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$ChangeOrderStatus,
         );
 }
@@ -391,11 +381,11 @@ extension ClientExtension$Mutation$ChangeOrderStatus on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$ChangeOrderStatus>>
       mutate$ChangeOrderStatus(
               Options$Mutation$ChangeOrderStatus options) async =>
-          await this.mutate(options);
+          await mutate(options);
   graphql.ObservableQuery<Mutation$ChangeOrderStatus>
       watchMutation$ChangeOrderStatus(
               WatchOptions$Mutation$ChangeOrderStatus options) =>
-          this.watchMutation(options);
+          watchMutation(options);
 }
 
 class Mutation$ChangeOrderStatus$changeOrderStatus {
@@ -419,12 +409,12 @@ class Mutation$ChangeOrderStatus$changeOrderStatus {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$status = status;
-    _resultData['status'] = toJson$Enum$OrderStatus(l$status);
+    resultData['status'] = toJson$Enum$OrderStatus(l$status);
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -442,7 +432,7 @@ class Mutation$ChangeOrderStatus$changeOrderStatus {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$ChangeOrderStatus$changeOrderStatus) ||
+    if (other is! Mutation$ChangeOrderStatus$changeOrderStatus ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -498,6 +488,7 @@ class _CopyWithImpl$Mutation$ChangeOrderStatus$changeOrderStatus<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? status = _undefined,
     Object? $__typename = _undefined,
@@ -516,8 +507,9 @@ class _CopyWithStubImpl$Mutation$ChangeOrderStatus$changeOrderStatus<TRes>
     implements CopyWith$Mutation$ChangeOrderStatus$changeOrderStatus<TRes> {
   _CopyWithStubImpl$Mutation$ChangeOrderStatus$changeOrderStatus(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Enum$OrderStatus? status,
     String? $__typename,

@@ -41,20 +41,20 @@ class Fragment$PersonalInfo {
   final String? email;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$username = username;
-    _resultData['username'] = l$username;
+    resultData['username'] = l$username;
     final l$firstname = firstname;
-    _resultData['firstname'] = l$firstname;
+    resultData['firstname'] = l$firstname;
     final l$lastname = lastname;
-    _resultData['lastname'] = l$lastname;
+    resultData['lastname'] = l$lastname;
     final l$middlename = middlename;
-    _resultData['middlename'] = l$middlename;
+    resultData['middlename'] = l$middlename;
     final l$phoneNumber = phoneNumber;
-    _resultData['phoneNumber'] = l$phoneNumber;
+    resultData['phoneNumber'] = l$phoneNumber;
     final l$email = email;
-    _resultData['email'] = l$email;
-    return _resultData;
+    resultData['email'] = l$email;
+    return resultData;
   }
 
   @override
@@ -80,7 +80,7 @@ class Fragment$PersonalInfo {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$PersonalInfo) || runtimeType != other.runtimeType) {
+    if (other is! Fragment$PersonalInfo || runtimeType != other.runtimeType) {
       return false;
     }
     final l$username = username;
@@ -157,6 +157,7 @@ class _CopyWithImpl$Fragment$PersonalInfo<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? username = _undefined,
     Object? firstname = _undefined,
@@ -188,8 +189,9 @@ class _CopyWithStubImpl$Fragment$PersonalInfo<TRes>
     implements CopyWith$Fragment$PersonalInfo<TRes> {
   _CopyWithStubImpl$Fragment$PersonalInfo(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? username,
     String? firstname,
@@ -264,7 +266,7 @@ extension ClientExtension$Fragment$PersonalInfo on graphql.GraphQLClient {
     required Map<String, dynamic> idFields,
     bool broadcast = true,
   }) =>
-      this.writeFragment(
+      writeFragment(
         graphql.FragmentRequest(
           idFields: idFields,
           fragment: const graphql.Fragment(
@@ -279,7 +281,7 @@ extension ClientExtension$Fragment$PersonalInfo on graphql.GraphQLClient {
     required Map<String, dynamic> idFields,
     bool optimistic = true,
   }) {
-    final result = this.readFragment(
+    final result = readFragment(
       graphql.FragmentRequest(
         idFields: idFields,
         fragment: const graphql.Fragment(

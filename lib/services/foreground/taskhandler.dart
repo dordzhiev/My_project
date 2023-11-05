@@ -35,7 +35,7 @@ Future<void> onStart(DateTime timestamp, SendPort? sendPort) async {
     streamSubscription = Geolocator.getPositionStream(
       locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        intervalDuration: Duration(seconds: 5),
+        intervalDuration: const Duration(seconds: 5),
       ),
     ).listen((Position pos) async {
       await GetIt.I<APIService>().updateLocation(pos.latitude, pos.longitude);

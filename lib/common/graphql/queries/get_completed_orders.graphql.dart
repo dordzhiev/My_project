@@ -40,7 +40,7 @@ class Variables$Query$GetCompletedOrders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Query$GetCompletedOrders) ||
+    if (other is! Variables$Query$GetCompletedOrders ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -84,6 +84,7 @@ class _CopyWithImpl$Variables$Query$GetCompletedOrders<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetCompletedOrders._({
         ..._instance._$data,
@@ -95,8 +96,9 @@ class _CopyWithStubImpl$Variables$Query$GetCompletedOrders<TRes>
     implements CopyWith$Variables$Query$GetCompletedOrders<TRes> {
   _CopyWithStubImpl$Variables$Query$GetCompletedOrders(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({int? id}) => _res;
 }
 
@@ -114,11 +116,11 @@ class Query$GetCompletedOrders {
   final List<Fragment$Order> getCompletedOrders;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$getCompletedOrders = getCompletedOrders;
-    _resultData['getCompletedOrders'] =
+    resultData['getCompletedOrders'] =
         l$getCompletedOrders.map((e) => e.toJson()).toList();
-    return _resultData;
+    return resultData;
   }
 
   @override
@@ -132,7 +134,7 @@ class Query$GetCompletedOrders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetCompletedOrders) ||
+    if (other is! Query$GetCompletedOrders ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -174,7 +176,7 @@ abstract class CopyWith$Query$GetCompletedOrders<TRes> {
   TRes getCompletedOrders(
       Iterable<Fragment$Order> Function(
               Iterable<CopyWith$Fragment$Order<Fragment$Order>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetCompletedOrders<TRes>
@@ -190,18 +192,20 @@ class _CopyWithImpl$Query$GetCompletedOrders<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? getCompletedOrders = _undefined}) =>
       _then(Query$GetCompletedOrders(
           getCompletedOrders:
               getCompletedOrders == _undefined || getCompletedOrders == null
                   ? _instance.getCompletedOrders
                   : (getCompletedOrders as List<Fragment$Order>)));
+  @override
   TRes getCompletedOrders(
           Iterable<Fragment$Order> Function(
                   Iterable<CopyWith$Fragment$Order<Fragment$Order>>)
-              _fn) =>
+              fn) =>
       call(
-          getCompletedOrders: _fn(
+          getCompletedOrders: fn(
               _instance.getCompletedOrders.map((e) => CopyWith$Fragment$Order(
                     e,
                     (i) => i,
@@ -212,10 +216,12 @@ class _CopyWithStubImpl$Query$GetCompletedOrders<TRes>
     implements CopyWith$Query$GetCompletedOrders<TRes> {
   _CopyWithStubImpl$Query$GetCompletedOrders(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({List<Fragment$Order>? getCompletedOrders}) => _res;
-  getCompletedOrders(_fn) => _res;
+  @override
+  getCompletedOrders(fn) => _res;
 }
 
 const documentNodeQueryGetCompletedOrders = DocumentNode(definitions: [
@@ -283,27 +289,21 @@ typedef OnQueryComplete$Query$GetCompletedOrders = FutureOr<void> Function(
 class Options$Query$GetCompletedOrders
     extends graphql.QueryOptions<Query$GetCompletedOrders> {
   Options$Query$GetCompletedOrders({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetCompletedOrders variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetCompletedOrders? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetCompletedOrders? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
@@ -312,7 +312,6 @@ class Options$Query$GetCompletedOrders
                         ? null
                         : _parserFn$Query$GetCompletedOrders(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetCompletedOrders,
           parserFn: _parserFn$Query$GetCompletedOrders,
         );
@@ -331,31 +330,22 @@ class Options$Query$GetCompletedOrders
 class WatchOptions$Query$GetCompletedOrders
     extends graphql.WatchQueryOptions<Query$GetCompletedOrders> {
   WatchOptions$Query$GetCompletedOrders({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetCompletedOrders variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetCompletedOrders? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetCompletedOrders,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetCompletedOrders,
         );
 }
@@ -363,10 +353,9 @@ class WatchOptions$Query$GetCompletedOrders
 class FetchMoreOptions$Query$GetCompletedOrders
     extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetCompletedOrders({
-    required graphql.UpdateQuery updateQuery,
+    required super.updateQuery,
     required Variables$Query$GetCompletedOrders variables,
   }) : super(
-          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetCompletedOrders,
         );
@@ -376,20 +365,20 @@ extension ClientExtension$Query$GetCompletedOrders on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetCompletedOrders>>
       query$GetCompletedOrders(
               Options$Query$GetCompletedOrders options) async =>
-          await this.query(options);
+          await query(options);
   graphql.ObservableQuery<Query$GetCompletedOrders>
       watchQuery$GetCompletedOrders(
               WatchOptions$Query$GetCompletedOrders options) =>
-          this.watchQuery(options);
+          watchQuery(options);
   void writeQuery$GetCompletedOrders({
     required Query$GetCompletedOrders data,
     required Variables$Query$GetCompletedOrders variables,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
           operation:
-              graphql.Operation(document: documentNodeQueryGetCompletedOrders),
+              const graphql.Operation(document: documentNodeQueryGetCompletedOrders),
           variables: variables.toJson(),
         ),
         data: data.toJson(),
@@ -399,10 +388,10 @@ extension ClientExtension$Query$GetCompletedOrders on graphql.GraphQLClient {
     required Variables$Query$GetCompletedOrders variables,
     bool optimistic = true,
   }) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
         operation:
-            graphql.Operation(document: documentNodeQueryGetCompletedOrders),
+            const graphql.Operation(document: documentNodeQueryGetCompletedOrders),
         variables: variables.toJson(),
       ),
       optimistic: optimistic,

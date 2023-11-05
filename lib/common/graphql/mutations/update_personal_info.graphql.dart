@@ -141,7 +141,7 @@ class Variables$Mutation$UpdatePersonalInfo {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Mutation$UpdatePersonalInfo) ||
+    if (other is! Variables$Mutation$UpdatePersonalInfo ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -294,6 +294,7 @@ class _CopyWithImpl$Variables$Mutation$UpdatePersonalInfo<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? username = _undefined,
     Object? password = _undefined,
@@ -325,8 +326,9 @@ class _CopyWithStubImpl$Variables$Mutation$UpdatePersonalInfo<TRes>
     implements CopyWith$Variables$Mutation$UpdatePersonalInfo<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdatePersonalInfo(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? username,
     String? password,
@@ -355,10 +357,10 @@ class Mutation$UpdatePersonalInfo {
   final Fragment$PersonalInfo updateUser;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$updateUser = updateUser;
-    _resultData['updateUser'] = l$updateUser.toJson();
-    return _resultData;
+    resultData['updateUser'] = l$updateUser.toJson();
+    return resultData;
   }
 
   @override
@@ -372,7 +374,7 @@ class Mutation$UpdatePersonalInfo {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$UpdatePersonalInfo) ||
+    if (other is! Mutation$UpdatePersonalInfo ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -420,11 +422,13 @@ class _CopyWithImpl$Mutation$UpdatePersonalInfo<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? updateUser = _undefined}) => _then(
       Mutation$UpdatePersonalInfo(
           updateUser: updateUser == _undefined || updateUser == null
               ? _instance.updateUser
               : (updateUser as Fragment$PersonalInfo)));
+  @override
   CopyWith$Fragment$PersonalInfo<TRes> get updateUser {
     final local$updateUser = _instance.updateUser;
     return CopyWith$Fragment$PersonalInfo(
@@ -436,9 +440,11 @@ class _CopyWithStubImpl$Mutation$UpdatePersonalInfo<TRes>
     implements CopyWith$Mutation$UpdatePersonalInfo<TRes> {
   _CopyWithStubImpl$Mutation$UpdatePersonalInfo(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Fragment$PersonalInfo? updateUser}) => _res;
+  @override
   CopyWith$Fragment$PersonalInfo<TRes> get updateUser =>
       CopyWith$Fragment$PersonalInfo.stub(_res);
 }
@@ -622,26 +628,21 @@ typedef OnMutationCompleted$Mutation$UpdatePersonalInfo = FutureOr<void>
 class Options$Mutation$UpdatePersonalInfo
     extends graphql.MutationOptions<Mutation$UpdatePersonalInfo> {
   Options$Mutation$UpdatePersonalInfo({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdatePersonalInfo variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdatePersonalInfo? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$UpdatePersonalInfo? onCompleted,
-    graphql.OnMutationUpdate<Mutation$UpdatePersonalInfo>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -650,8 +651,6 @@ class Options$Mutation$UpdatePersonalInfo
                         ? null
                         : _parserFn$Mutation$UpdatePersonalInfo(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationUpdatePersonalInfo,
           parserFn: _parserFn$Mutation$UpdatePersonalInfo,
         );
@@ -670,31 +669,22 @@ class Options$Mutation$UpdatePersonalInfo
 class WatchOptions$Mutation$UpdatePersonalInfo
     extends graphql.WatchQueryOptions<Mutation$UpdatePersonalInfo> {
   WatchOptions$Mutation$UpdatePersonalInfo({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdatePersonalInfo variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdatePersonalInfo? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationUpdatePersonalInfo,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdatePersonalInfo,
         );
 }
@@ -703,9 +693,9 @@ extension ClientExtension$Mutation$UpdatePersonalInfo on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$UpdatePersonalInfo>>
       mutate$UpdatePersonalInfo(
               Options$Mutation$UpdatePersonalInfo options) async =>
-          await this.mutate(options);
+          await mutate(options);
   graphql.ObservableQuery<Mutation$UpdatePersonalInfo>
       watchMutation$UpdatePersonalInfo(
               WatchOptions$Mutation$UpdatePersonalInfo options) =>
-          this.watchMutation(options);
+          watchMutation(options);
 }

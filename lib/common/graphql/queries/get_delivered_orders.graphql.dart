@@ -17,11 +17,11 @@ class Query$GetDeliveredOrders {
   final List<Query$GetDeliveredOrders$deliveredOrders> deliveredOrders;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$deliveredOrders = deliveredOrders;
-    _resultData['deliveredOrders'] =
+    resultData['deliveredOrders'] =
         l$deliveredOrders.map((e) => e.toJson()).toList();
-    return _resultData;
+    return resultData;
   }
 
   @override
@@ -35,7 +35,7 @@ class Query$GetDeliveredOrders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetDeliveredOrders) ||
+    if (other is! Query$GetDeliveredOrders ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -79,7 +79,7 @@ abstract class CopyWith$Query$GetDeliveredOrders<TRes> {
               Iterable<
                   CopyWith$Query$GetDeliveredOrders$deliveredOrders<
                       Query$GetDeliveredOrders$deliveredOrders>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetDeliveredOrders<TRes>
@@ -95,6 +95,7 @@ class _CopyWithImpl$Query$GetDeliveredOrders<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? deliveredOrders = _undefined}) =>
       _then(Query$GetDeliveredOrders(
           deliveredOrders:
@@ -102,14 +103,15 @@ class _CopyWithImpl$Query$GetDeliveredOrders<TRes>
                   ? _instance.deliveredOrders
                   : (deliveredOrders
                       as List<Query$GetDeliveredOrders$deliveredOrders>)));
+  @override
   TRes deliveredOrders(
           Iterable<Query$GetDeliveredOrders$deliveredOrders> Function(
                   Iterable<
                       CopyWith$Query$GetDeliveredOrders$deliveredOrders<
                           Query$GetDeliveredOrders$deliveredOrders>>)
-              _fn) =>
+              fn) =>
       call(
-          deliveredOrders: _fn(_instance.deliveredOrders
+          deliveredOrders: fn(_instance.deliveredOrders
               .map((e) => CopyWith$Query$GetDeliveredOrders$deliveredOrders(
                     e,
                     (i) => i,
@@ -120,11 +122,13 @@ class _CopyWithStubImpl$Query$GetDeliveredOrders<TRes>
     implements CopyWith$Query$GetDeliveredOrders<TRes> {
   _CopyWithStubImpl$Query$GetDeliveredOrders(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({List<Query$GetDeliveredOrders$deliveredOrders>? deliveredOrders}) =>
       _res;
-  deliveredOrders(_fn) => _res;
+  @override
+  deliveredOrders(fn) => _res;
 }
 
 const documentNodeQueryGetDeliveredOrders = DocumentNode(definitions: [
@@ -234,25 +238,19 @@ typedef OnQueryComplete$Query$GetDeliveredOrders = FutureOr<void> Function(
 class Options$Query$GetDeliveredOrders
     extends graphql.QueryOptions<Query$GetDeliveredOrders> {
   Options$Query$GetDeliveredOrders({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetDeliveredOrders? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetDeliveredOrders? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
@@ -261,7 +259,6 @@ class Options$Query$GetDeliveredOrders
                         ? null
                         : _parserFn$Query$GetDeliveredOrders(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetDeliveredOrders,
           parserFn: _parserFn$Query$GetDeliveredOrders,
         );
@@ -280,29 +277,20 @@ class Options$Query$GetDeliveredOrders
 class WatchOptions$Query$GetDeliveredOrders
     extends graphql.WatchQueryOptions<Query$GetDeliveredOrders> {
   WatchOptions$Query$GetDeliveredOrders({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetDeliveredOrders? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetDeliveredOrders,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetDeliveredOrders,
         );
 }
@@ -310,9 +298,8 @@ class WatchOptions$Query$GetDeliveredOrders
 class FetchMoreOptions$Query$GetDeliveredOrders
     extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetDeliveredOrders(
-      {required graphql.UpdateQuery updateQuery})
+      {required super.updateQuery})
       : super(
-          updateQuery: updateQuery,
           document: documentNodeQueryGetDeliveredOrders,
         );
 }
@@ -321,17 +308,17 @@ extension ClientExtension$Query$GetDeliveredOrders on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetDeliveredOrders>>
       query$GetDeliveredOrders(
               [Options$Query$GetDeliveredOrders? options]) async =>
-          await this.query(options ?? Options$Query$GetDeliveredOrders());
+          await query(options ?? Options$Query$GetDeliveredOrders());
   graphql.ObservableQuery<Query$GetDeliveredOrders>
       watchQuery$GetDeliveredOrders(
               [WatchOptions$Query$GetDeliveredOrders? options]) =>
-          this.watchQuery(options ?? WatchOptions$Query$GetDeliveredOrders());
+          watchQuery(options ?? WatchOptions$Query$GetDeliveredOrders());
   void writeQuery$GetDeliveredOrders({
     required Query$GetDeliveredOrders data,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
-        graphql.Request(
+      writeQuery(
+        const graphql.Request(
             operation: graphql.Operation(
                 document: documentNodeQueryGetDeliveredOrders)),
         data: data.toJson(),
@@ -339,8 +326,8 @@ extension ClientExtension$Query$GetDeliveredOrders on graphql.GraphQLClient {
       );
   Query$GetDeliveredOrders? readQuery$GetDeliveredOrders(
       {bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
+    final result = readQuery(
+      const graphql.Request(
           operation:
               graphql.Operation(document: documentNodeQueryGetDeliveredOrders)),
       optimistic: optimistic,
@@ -389,18 +376,18 @@ class Query$GetDeliveredOrders$deliveredOrders {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$datetime = datetime;
-    _resultData['datetime'] = l$datetime?.toIso8601String();
+    resultData['datetime'] = l$datetime?.toIso8601String();
     final l$orders = orders;
-    _resultData['orders'] = l$orders.map((e) => e.toJson()).toList();
+    resultData['orders'] = l$orders.map((e) => e.toJson()).toList();
     final l$totalCourierPaymentCost = totalCourierPaymentCost;
-    _resultData['totalCourierPaymentCost'] = l$totalCourierPaymentCost;
+    resultData['totalCourierPaymentCost'] = l$totalCourierPaymentCost;
     final l$totalCashAmount = totalCashAmount;
-    _resultData['totalCashAmount'] = l$totalCashAmount;
+    resultData['totalCashAmount'] = l$totalCashAmount;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -424,7 +411,7 @@ class Query$GetDeliveredOrders$deliveredOrders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetDeliveredOrders$deliveredOrders) ||
+    if (other is! Query$GetDeliveredOrders$deliveredOrders ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -495,7 +482,7 @@ abstract class CopyWith$Query$GetDeliveredOrders$deliveredOrders<TRes> {
               Iterable<
                   CopyWith$Query$GetDeliveredOrders$deliveredOrders$orders<
                       Query$GetDeliveredOrders$deliveredOrders$orders>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetDeliveredOrders$deliveredOrders<TRes>
@@ -511,6 +498,7 @@ class _CopyWithImpl$Query$GetDeliveredOrders$deliveredOrders<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? datetime = _undefined,
     Object? orders = _undefined,
@@ -537,14 +525,15 @@ class _CopyWithImpl$Query$GetDeliveredOrders$deliveredOrders<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+  @override
   TRes orders(
           Iterable<Query$GetDeliveredOrders$deliveredOrders$orders> Function(
                   Iterable<
                       CopyWith$Query$GetDeliveredOrders$deliveredOrders$orders<
                           Query$GetDeliveredOrders$deliveredOrders$orders>>)
-              _fn) =>
+              fn) =>
       call(
-          orders: _fn(_instance.orders.map(
+          orders: fn(_instance.orders.map(
               (e) => CopyWith$Query$GetDeliveredOrders$deliveredOrders$orders(
                     e,
                     (i) => i,
@@ -555,8 +544,9 @@ class _CopyWithStubImpl$Query$GetDeliveredOrders$deliveredOrders<TRes>
     implements CopyWith$Query$GetDeliveredOrders$deliveredOrders<TRes> {
   _CopyWithStubImpl$Query$GetDeliveredOrders$deliveredOrders(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     DateTime? datetime,
     List<Query$GetDeliveredOrders$deliveredOrders$orders>? orders,
@@ -565,7 +555,8 @@ class _CopyWithStubImpl$Query$GetDeliveredOrders$deliveredOrders<TRes>
     String? $__typename,
   }) =>
       _res;
-  orders(_fn) => _res;
+  @override
+  orders(fn) => _res;
 }
 
 class Query$GetDeliveredOrders$deliveredOrders$orders {
@@ -611,20 +602,20 @@ class Query$GetDeliveredOrders$deliveredOrders$orders {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$fromAddress = fromAddress;
-    _resultData['fromAddress'] = l$fromAddress;
+    resultData['fromAddress'] = l$fromAddress;
     final l$courierPaymentCost = courierPaymentCost;
-    _resultData['courierPaymentCost'] = l$courierPaymentCost;
+    resultData['courierPaymentCost'] = l$courierPaymentCost;
     final l$orderAmount = orderAmount;
-    _resultData['orderAmount'] = l$orderAmount;
+    resultData['orderAmount'] = l$orderAmount;
     final l$orderDeliveredAt = orderDeliveredAt;
-    _resultData['orderDeliveredAt'] = l$orderDeliveredAt?.toIso8601String();
+    resultData['orderDeliveredAt'] = l$orderDeliveredAt?.toIso8601String();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -650,7 +641,7 @@ class Query$GetDeliveredOrders$deliveredOrders$orders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetDeliveredOrders$deliveredOrders$orders) ||
+    if (other is! Query$GetDeliveredOrders$deliveredOrders$orders ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -731,6 +722,7 @@ class _CopyWithImpl$Query$GetDeliveredOrders$deliveredOrders$orders<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? fromAddress = _undefined,
@@ -764,8 +756,9 @@ class _CopyWithStubImpl$Query$GetDeliveredOrders$deliveredOrders$orders<TRes>
     implements CopyWith$Query$GetDeliveredOrders$deliveredOrders$orders<TRes> {
   _CopyWithStubImpl$Query$GetDeliveredOrders$deliveredOrders$orders(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     int? id,
     String? fromAddress,

@@ -17,11 +17,11 @@ class Mutation$EndSession {
   final List<Mutation$EndSession$endCourierSession> endCourierSession;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$endCourierSession = endCourierSession;
-    _resultData['endCourierSession'] =
+    resultData['endCourierSession'] =
         l$endCourierSession.map((e) => e.toJson()).toList();
-    return _resultData;
+    return resultData;
   }
 
   @override
@@ -35,7 +35,7 @@ class Mutation$EndSession {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$EndSession) || runtimeType != other.runtimeType) {
+    if (other is! Mutation$EndSession || runtimeType != other.runtimeType) {
       return false;
     }
     final l$endCourierSession = endCourierSession;
@@ -77,7 +77,7 @@ abstract class CopyWith$Mutation$EndSession<TRes> {
               Iterable<
                   CopyWith$Mutation$EndSession$endCourierSession<
                       Mutation$EndSession$endCourierSession>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Mutation$EndSession<TRes>
@@ -93,6 +93,7 @@ class _CopyWithImpl$Mutation$EndSession<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? endCourierSession = _undefined}) =>
       _then(Mutation$EndSession(
           endCourierSession:
@@ -100,14 +101,15 @@ class _CopyWithImpl$Mutation$EndSession<TRes>
                   ? _instance.endCourierSession
                   : (endCourierSession
                       as List<Mutation$EndSession$endCourierSession>)));
+  @override
   TRes endCourierSession(
           Iterable<Mutation$EndSession$endCourierSession> Function(
                   Iterable<
                       CopyWith$Mutation$EndSession$endCourierSession<
                           Mutation$EndSession$endCourierSession>>)
-              _fn) =>
+              fn) =>
       call(
-          endCourierSession: _fn(_instance.endCourierSession
+          endCourierSession: fn(_instance.endCourierSession
               .map((e) => CopyWith$Mutation$EndSession$endCourierSession(
                     e,
                     (i) => i,
@@ -118,11 +120,13 @@ class _CopyWithStubImpl$Mutation$EndSession<TRes>
     implements CopyWith$Mutation$EndSession<TRes> {
   _CopyWithStubImpl$Mutation$EndSession(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({List<Mutation$EndSession$endCourierSession>? endCourierSession}) =>
       _res;
-  endCourierSession(_fn) => _res;
+  @override
+  endCourierSession(fn) => _res;
 }
 
 const documentNodeMutationEndSession = DocumentNode(definitions: [
@@ -160,32 +164,25 @@ typedef OnMutationCompleted$Mutation$EndSession = FutureOr<void> Function(
 class Options$Mutation$EndSession
     extends graphql.MutationOptions<Mutation$EndSession> {
   Options$Mutation$EndSession({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$EndSession? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$EndSession? onCompleted,
-    graphql.OnMutationUpdate<Mutation$EndSession>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$EndSession(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationEndSession,
           parserFn: _parserFn$Mutation$EndSession,
         );
@@ -204,29 +201,20 @@ class Options$Mutation$EndSession
 class WatchOptions$Mutation$EndSession
     extends graphql.WatchQueryOptions<Mutation$EndSession> {
   WatchOptions$Mutation$EndSession({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$EndSession? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationEndSession,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$EndSession,
         );
 }
@@ -234,10 +222,10 @@ class WatchOptions$Mutation$EndSession
 extension ClientExtension$Mutation$EndSession on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$EndSession>> mutate$EndSession(
           [Options$Mutation$EndSession? options]) async =>
-      await this.mutate(options ?? Options$Mutation$EndSession());
+      await mutate(options ?? Options$Mutation$EndSession());
   graphql.ObservableQuery<Mutation$EndSession> watchMutation$EndSession(
           [WatchOptions$Mutation$EndSession? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$EndSession());
+      watchMutation(options ?? WatchOptions$Mutation$EndSession());
 }
 
 class Mutation$EndSession$endCourierSession {
@@ -253,10 +241,10 @@ class Mutation$EndSession$endCourierSession {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -270,7 +258,7 @@ class Mutation$EndSession$endCourierSession {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$EndSession$endCourierSession) ||
+    if (other is! Mutation$EndSession$endCourierSession ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -318,6 +306,7 @@ class _CopyWithImpl$Mutation$EndSession$endCourierSession<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? $__typename = _undefined}) =>
       _then(Mutation$EndSession$endCourierSession(
           $__typename: $__typename == _undefined || $__typename == null
@@ -329,7 +318,8 @@ class _CopyWithStubImpl$Mutation$EndSession$endCourierSession<TRes>
     implements CopyWith$Mutation$EndSession$endCourierSession<TRes> {
   _CopyWithStubImpl$Mutation$EndSession$endCourierSession(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? $__typename}) => _res;
 }

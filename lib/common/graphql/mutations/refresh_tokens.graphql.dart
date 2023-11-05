@@ -15,10 +15,10 @@ class Mutation$RefreshTokens {
   final Mutation$RefreshTokens$refreshTokens refreshTokens;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$refreshTokens = refreshTokens;
-    _resultData['refreshTokens'] = l$refreshTokens.toJson();
-    return _resultData;
+    resultData['refreshTokens'] = l$refreshTokens.toJson();
+    return resultData;
   }
 
   @override
@@ -32,7 +32,7 @@ class Mutation$RefreshTokens {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$RefreshTokens) ||
+    if (other is! Mutation$RefreshTokens ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -79,11 +79,13 @@ class _CopyWithImpl$Mutation$RefreshTokens<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? refreshTokens = _undefined}) =>
       _then(Mutation$RefreshTokens(
           refreshTokens: refreshTokens == _undefined || refreshTokens == null
               ? _instance.refreshTokens
               : (refreshTokens as Mutation$RefreshTokens$refreshTokens)));
+  @override
   CopyWith$Mutation$RefreshTokens$refreshTokens<TRes> get refreshTokens {
     final local$refreshTokens = _instance.refreshTokens;
     return CopyWith$Mutation$RefreshTokens$refreshTokens(
@@ -95,9 +97,11 @@ class _CopyWithStubImpl$Mutation$RefreshTokens<TRes>
     implements CopyWith$Mutation$RefreshTokens<TRes> {
   _CopyWithStubImpl$Mutation$RefreshTokens(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Mutation$RefreshTokens$refreshTokens? refreshTokens}) => _res;
+  @override
   CopyWith$Mutation$RefreshTokens$refreshTokens<TRes> get refreshTokens =>
       CopyWith$Mutation$RefreshTokens$refreshTokens.stub(_res);
 }
@@ -152,24 +156,19 @@ typedef OnMutationCompleted$Mutation$RefreshTokens = FutureOr<void> Function(
 class Options$Mutation$RefreshTokens
     extends graphql.MutationOptions<Mutation$RefreshTokens> {
   Options$Mutation$RefreshTokens({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$RefreshTokens? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$RefreshTokens? onCompleted,
-    graphql.OnMutationUpdate<Mutation$RefreshTokens>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -178,8 +177,6 @@ class Options$Mutation$RefreshTokens
                         ? null
                         : _parserFn$Mutation$RefreshTokens(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationRefreshTokens,
           parserFn: _parserFn$Mutation$RefreshTokens,
         );
@@ -198,29 +195,20 @@ class Options$Mutation$RefreshTokens
 class WatchOptions$Mutation$RefreshTokens
     extends graphql.WatchQueryOptions<Mutation$RefreshTokens> {
   WatchOptions$Mutation$RefreshTokens({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$RefreshTokens? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationRefreshTokens,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$RefreshTokens,
         );
 }
@@ -228,10 +216,10 @@ class WatchOptions$Mutation$RefreshTokens
 extension ClientExtension$Mutation$RefreshTokens on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$RefreshTokens>> mutate$RefreshTokens(
           [Options$Mutation$RefreshTokens? options]) async =>
-      await this.mutate(options ?? Options$Mutation$RefreshTokens());
+      await mutate(options ?? Options$Mutation$RefreshTokens());
   graphql.ObservableQuery<Mutation$RefreshTokens> watchMutation$RefreshTokens(
           [WatchOptions$Mutation$RefreshTokens? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$RefreshTokens());
+      watchMutation(options ?? WatchOptions$Mutation$RefreshTokens());
 }
 
 class Mutation$RefreshTokens$refreshTokens {
@@ -260,14 +248,14 @@ class Mutation$RefreshTokens$refreshTokens {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$refreshToken = refreshToken;
-    _resultData['refreshToken'] = l$refreshToken;
+    resultData['refreshToken'] = l$refreshToken;
     final l$accessToken = accessToken;
-    _resultData['accessToken'] = l$accessToken;
+    resultData['accessToken'] = l$accessToken;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -287,7 +275,7 @@ class Mutation$RefreshTokens$refreshTokens {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$RefreshTokens$refreshTokens) ||
+    if (other is! Mutation$RefreshTokens$refreshTokens ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -349,6 +337,7 @@ class _CopyWithImpl$Mutation$RefreshTokens$refreshTokens<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? refreshToken = _undefined,
     Object? accessToken = _undefined,
@@ -371,8 +360,9 @@ class _CopyWithStubImpl$Mutation$RefreshTokens$refreshTokens<TRes>
     implements CopyWith$Mutation$RefreshTokens$refreshTokens<TRes> {
   _CopyWithStubImpl$Mutation$RefreshTokens$refreshTokens(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? refreshToken,
     String? accessToken,

@@ -104,47 +104,47 @@ class Fragment$Order {
   final String? customerComment;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$OrderStatus(l$status);
+    resultData['status'] = toJson$Enum$OrderStatus(l$status);
     final l$paymentType = paymentType;
-    _resultData['paymentType'] = l$paymentType == null
+    resultData['paymentType'] = l$paymentType == null
         ? null
         : toJson$Enum$OrderPaymentType(l$paymentType);
     final l$orderAmount = orderAmount;
-    _resultData['orderAmount'] = l$orderAmount;
+    resultData['orderAmount'] = l$orderAmount;
     final l$deliveryCostForCustomer = deliveryCostForCustomer;
-    _resultData['deliveryCostForCustomer'] = l$deliveryCostForCustomer;
+    resultData['deliveryCostForCustomer'] = l$deliveryCostForCustomer;
     final l$isPaymentCompleted = isPaymentCompleted;
-    _resultData['isPaymentCompleted'] = l$isPaymentCompleted;
+    resultData['isPaymentCompleted'] = l$isPaymentCompleted;
     final l$isPrepaidToPartner = isPrepaidToPartner;
-    _resultData['isPrepaidToPartner'] = l$isPrepaidToPartner;
+    resultData['isPrepaidToPartner'] = l$isPrepaidToPartner;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$expectedReadyTime = expectedReadyTime;
-    _resultData['expectedReadyTime'] = l$expectedReadyTime.toIso8601String();
+    resultData['expectedReadyTime'] = l$expectedReadyTime.toIso8601String();
     final l$expectedDeliveryTime = expectedDeliveryTime;
-    _resultData['expectedDeliveryTime'] =
+    resultData['expectedDeliveryTime'] =
         l$expectedDeliveryTime.toIso8601String();
     final l$restaurantAddress = restaurantAddress;
-    _resultData['restaurantAddress'] = l$restaurantAddress;
+    resultData['restaurantAddress'] = l$restaurantAddress;
     final l$restaurantName = restaurantName;
-    _resultData['restaurantName'] = l$restaurantName;
+    resultData['restaurantName'] = l$restaurantName;
     final l$restaurantPhoneNumber = restaurantPhoneNumber;
-    _resultData['restaurantPhoneNumber'] = l$restaurantPhoneNumber;
+    resultData['restaurantPhoneNumber'] = l$restaurantPhoneNumber;
     final l$customerAddress = customerAddress;
-    _resultData['customerAddress'] = l$customerAddress;
+    resultData['customerAddress'] = l$customerAddress;
     final l$customerName = customerName;
-    _resultData['customerName'] = l$customerName;
+    resultData['customerName'] = l$customerName;
     final l$customerPhoneNumber = customerPhoneNumber;
-    _resultData['customerPhoneNumber'] = l$customerPhoneNumber;
+    resultData['customerPhoneNumber'] = l$customerPhoneNumber;
     final l$orderDescription = orderDescription;
-    _resultData['orderDescription'] = l$orderDescription;
+    resultData['orderDescription'] = l$orderDescription;
     final l$customerComment = customerComment;
-    _resultData['customerComment'] = l$customerComment;
-    return _resultData;
+    resultData['customerComment'] = l$customerComment;
+    return resultData;
   }
 
   @override
@@ -194,7 +194,7 @@ class Fragment$Order {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Fragment$Order) || runtimeType != other.runtimeType) {
+    if (other is! Fragment$Order || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -343,6 +343,7 @@ class _CopyWithImpl$Fragment$Order<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? status = _undefined,
@@ -431,8 +432,9 @@ class _CopyWithStubImpl$Fragment$Order<TRes>
     implements CopyWith$Fragment$Order<TRes> {
   _CopyWithStubImpl$Fragment$Order(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     int? id,
     Enum$OrderStatus? status,
@@ -603,7 +605,7 @@ extension ClientExtension$Fragment$Order on graphql.GraphQLClient {
     required Map<String, dynamic> idFields,
     bool broadcast = true,
   }) =>
-      this.writeFragment(
+      writeFragment(
         graphql.FragmentRequest(
           idFields: idFields,
           fragment: const graphql.Fragment(
@@ -618,7 +620,7 @@ extension ClientExtension$Fragment$Order on graphql.GraphQLClient {
     required Map<String, dynamic> idFields,
     bool optimistic = true,
   }) {
-    final result = this.readFragment(
+    final result = readFragment(
       graphql.FragmentRequest(
         idFields: idFields,
         fragment: const graphql.Fragment(

@@ -40,7 +40,7 @@ class Variables$Query$GetPersonalInformation {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Query$GetPersonalInformation) ||
+    if (other is! Variables$Query$GetPersonalInformation ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -84,6 +84,7 @@ class _CopyWithImpl$Variables$Query$GetPersonalInformation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetPersonalInformation._({
         ..._instance._$data,
@@ -95,8 +96,9 @@ class _CopyWithStubImpl$Variables$Query$GetPersonalInformation<TRes>
     implements CopyWith$Variables$Query$GetPersonalInformation<TRes> {
   _CopyWithStubImpl$Variables$Query$GetPersonalInformation(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({int? id}) => _res;
 }
 
@@ -113,10 +115,10 @@ class Query$GetPersonalInformation {
   final Fragment$PersonalInfo getUserById;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$getUserById = getUserById;
-    _resultData['getUserById'] = l$getUserById.toJson();
-    return _resultData;
+    resultData['getUserById'] = l$getUserById.toJson();
+    return resultData;
   }
 
   @override
@@ -130,7 +132,7 @@ class Query$GetPersonalInformation {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetPersonalInformation) ||
+    if (other is! Query$GetPersonalInformation ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -178,11 +180,13 @@ class _CopyWithImpl$Query$GetPersonalInformation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? getUserById = _undefined}) =>
       _then(Query$GetPersonalInformation(
           getUserById: getUserById == _undefined || getUserById == null
               ? _instance.getUserById
               : (getUserById as Fragment$PersonalInfo)));
+  @override
   CopyWith$Fragment$PersonalInfo<TRes> get getUserById {
     final local$getUserById = _instance.getUserById;
     return CopyWith$Fragment$PersonalInfo(
@@ -194,9 +198,11 @@ class _CopyWithStubImpl$Query$GetPersonalInformation<TRes>
     implements CopyWith$Query$GetPersonalInformation<TRes> {
   _CopyWithStubImpl$Query$GetPersonalInformation(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Fragment$PersonalInfo? getUserById}) => _res;
+  @override
   CopyWith$Fragment$PersonalInfo<TRes> get getUserById =>
       CopyWith$Fragment$PersonalInfo.stub(_res);
 }
@@ -257,27 +263,21 @@ typedef OnQueryComplete$Query$GetPersonalInformation = FutureOr<void> Function(
 class Options$Query$GetPersonalInformation
     extends graphql.QueryOptions<Query$GetPersonalInformation> {
   Options$Query$GetPersonalInformation({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetPersonalInformation variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetPersonalInformation? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetPersonalInformation? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
@@ -286,7 +286,6 @@ class Options$Query$GetPersonalInformation
                         ? null
                         : _parserFn$Query$GetPersonalInformation(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetPersonalInformation,
           parserFn: _parserFn$Query$GetPersonalInformation,
         );
@@ -305,31 +304,22 @@ class Options$Query$GetPersonalInformation
 class WatchOptions$Query$GetPersonalInformation
     extends graphql.WatchQueryOptions<Query$GetPersonalInformation> {
   WatchOptions$Query$GetPersonalInformation({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetPersonalInformation variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetPersonalInformation? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetPersonalInformation,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetPersonalInformation,
         );
 }
@@ -337,10 +327,9 @@ class WatchOptions$Query$GetPersonalInformation
 class FetchMoreOptions$Query$GetPersonalInformation
     extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetPersonalInformation({
-    required graphql.UpdateQuery updateQuery,
+    required super.updateQuery,
     required Variables$Query$GetPersonalInformation variables,
   }) : super(
-          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetPersonalInformation,
         );
@@ -351,19 +340,19 @@ extension ClientExtension$Query$GetPersonalInformation
   Future<graphql.QueryResult<Query$GetPersonalInformation>>
       query$GetPersonalInformation(
               Options$Query$GetPersonalInformation options) async =>
-          await this.query(options);
+          await query(options);
   graphql.ObservableQuery<Query$GetPersonalInformation>
       watchQuery$GetPersonalInformation(
               WatchOptions$Query$GetPersonalInformation options) =>
-          this.watchQuery(options);
+          watchQuery(options);
   void writeQuery$GetPersonalInformation({
     required Query$GetPersonalInformation data,
     required Variables$Query$GetPersonalInformation variables,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
-          operation: graphql.Operation(
+          operation: const graphql.Operation(
               document: documentNodeQueryGetPersonalInformation),
           variables: variables.toJson(),
         ),
@@ -374,9 +363,9 @@ extension ClientExtension$Query$GetPersonalInformation
     required Variables$Query$GetPersonalInformation variables,
     bool optimistic = true,
   }) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
-        operation: graphql.Operation(
+        operation: const graphql.Operation(
             document: documentNodeQueryGetPersonalInformation),
         variables: variables.toJson(),
       ),

@@ -46,7 +46,7 @@ class Variables$Mutation$StartSession {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Mutation$StartSession) ||
+    if (other is! Variables$Mutation$StartSession ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -102,6 +102,7 @@ class _CopyWithImpl$Variables$Mutation$StartSession<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? latitude = _undefined,
     Object? longitude = _undefined,
@@ -119,8 +120,9 @@ class _CopyWithStubImpl$Variables$Mutation$StartSession<TRes>
     implements CopyWith$Variables$Mutation$StartSession<TRes> {
   _CopyWithStubImpl$Variables$Mutation$StartSession(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     double? latitude,
     double? longitude,
@@ -141,10 +143,10 @@ class Mutation$StartSession {
   final Mutation$StartSession$startCourierSession startCourierSession;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$startCourierSession = startCourierSession;
-    _resultData['startCourierSession'] = l$startCourierSession.toJson();
-    return _resultData;
+    resultData['startCourierSession'] = l$startCourierSession.toJson();
+    return resultData;
   }
 
   @override
@@ -158,7 +160,7 @@ class Mutation$StartSession {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$StartSession) || runtimeType != other.runtimeType) {
+    if (other is! Mutation$StartSession || runtimeType != other.runtimeType) {
       return false;
     }
     final l$startCourierSession = startCourierSession;
@@ -205,6 +207,7 @@ class _CopyWithImpl$Mutation$StartSession<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? startCourierSession = _undefined}) =>
       _then(Mutation$StartSession(
           startCourierSession:
@@ -212,6 +215,7 @@ class _CopyWithImpl$Mutation$StartSession<TRes>
                   ? _instance.startCourierSession
                   : (startCourierSession
                       as Mutation$StartSession$startCourierSession)));
+  @override
   CopyWith$Mutation$StartSession$startCourierSession<TRes>
       get startCourierSession {
     final local$startCourierSession = _instance.startCourierSession;
@@ -224,10 +228,12 @@ class _CopyWithStubImpl$Mutation$StartSession<TRes>
     implements CopyWith$Mutation$StartSession<TRes> {
   _CopyWithStubImpl$Mutation$StartSession(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Mutation$StartSession$startCourierSession? startCourierSession}) =>
       _res;
+  @override
   CopyWith$Mutation$StartSession$startCourierSession<TRes>
       get startCourierSession =>
           CopyWith$Mutation$StartSession$startCourierSession.stub(_res);
@@ -302,34 +308,27 @@ typedef OnMutationCompleted$Mutation$StartSession = FutureOr<void> Function(
 class Options$Mutation$StartSession
     extends graphql.MutationOptions<Mutation$StartSession> {
   Options$Mutation$StartSession({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$StartSession variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$StartSession? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$StartSession? onCompleted,
-    graphql.OnMutationUpdate<Mutation$StartSession>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$StartSession(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationStartSession,
           parserFn: _parserFn$Mutation$StartSession,
         );
@@ -348,31 +347,22 @@ class Options$Mutation$StartSession
 class WatchOptions$Mutation$StartSession
     extends graphql.WatchQueryOptions<Mutation$StartSession> {
   WatchOptions$Mutation$StartSession({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$StartSession variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$StartSession? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationStartSession,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$StartSession,
         );
 }
@@ -380,10 +370,10 @@ class WatchOptions$Mutation$StartSession
 extension ClientExtension$Mutation$StartSession on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$StartSession>> mutate$StartSession(
           Options$Mutation$StartSession options) async =>
-      await this.mutate(options);
+      await mutate(options);
   graphql.ObservableQuery<Mutation$StartSession> watchMutation$StartSession(
           WatchOptions$Mutation$StartSession options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$StartSession$startCourierSession {
@@ -399,10 +389,10 @@ class Mutation$StartSession$startCourierSession {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -416,7 +406,7 @@ class Mutation$StartSession$startCourierSession {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$StartSession$startCourierSession) ||
+    if (other is! Mutation$StartSession$startCourierSession ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -464,6 +454,7 @@ class _CopyWithImpl$Mutation$StartSession$startCourierSession<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? $__typename = _undefined}) =>
       _then(Mutation$StartSession$startCourierSession(
           $__typename: $__typename == _undefined || $__typename == null
@@ -475,7 +466,8 @@ class _CopyWithStubImpl$Mutation$StartSession$startCourierSession<TRes>
     implements CopyWith$Mutation$StartSession$startCourierSession<TRes> {
   _CopyWithStubImpl$Mutation$StartSession$startCourierSession(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? $__typename}) => _res;
 }

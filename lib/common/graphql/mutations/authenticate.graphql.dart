@@ -46,7 +46,7 @@ class Variables$Mutation$Authenticate {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Mutation$Authenticate) ||
+    if (other is! Variables$Mutation$Authenticate ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -102,6 +102,7 @@ class _CopyWithImpl$Variables$Mutation$Authenticate<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? username = _undefined,
     Object? password = _undefined,
@@ -119,8 +120,9 @@ class _CopyWithStubImpl$Variables$Mutation$Authenticate<TRes>
     implements CopyWith$Variables$Mutation$Authenticate<TRes> {
   _CopyWithStubImpl$Variables$Mutation$Authenticate(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? username,
     String? password,
@@ -141,10 +143,10 @@ class Mutation$Authenticate {
   final Mutation$Authenticate$login login;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$login = login;
-    _resultData['login'] = l$login.toJson();
-    return _resultData;
+    resultData['login'] = l$login.toJson();
+    return resultData;
   }
 
   @override
@@ -158,7 +160,7 @@ class Mutation$Authenticate {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$Authenticate) || runtimeType != other.runtimeType) {
+    if (other is! Mutation$Authenticate || runtimeType != other.runtimeType) {
       return false;
     }
     final l$login = login;
@@ -204,10 +206,12 @@ class _CopyWithImpl$Mutation$Authenticate<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? login = _undefined}) => _then(Mutation$Authenticate(
       login: login == _undefined || login == null
           ? _instance.login
           : (login as Mutation$Authenticate$login)));
+  @override
   CopyWith$Mutation$Authenticate$login<TRes> get login {
     final local$login = _instance.login;
     return CopyWith$Mutation$Authenticate$login(
@@ -219,9 +223,11 @@ class _CopyWithStubImpl$Mutation$Authenticate<TRes>
     implements CopyWith$Mutation$Authenticate<TRes> {
   _CopyWithStubImpl$Mutation$Authenticate(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Mutation$Authenticate$login? login}) => _res;
+  @override
   CopyWith$Mutation$Authenticate$login<TRes> get login =>
       CopyWith$Mutation$Authenticate$login.stub(_res);
 }
@@ -316,34 +322,27 @@ typedef OnMutationCompleted$Mutation$Authenticate = FutureOr<void> Function(
 class Options$Mutation$Authenticate
     extends graphql.MutationOptions<Mutation$Authenticate> {
   Options$Mutation$Authenticate({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$Authenticate variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Authenticate? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$Authenticate? onCompleted,
-    graphql.OnMutationUpdate<Mutation$Authenticate>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$Authenticate(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationAuthenticate,
           parserFn: _parserFn$Mutation$Authenticate,
         );
@@ -362,31 +361,22 @@ class Options$Mutation$Authenticate
 class WatchOptions$Mutation$Authenticate
     extends graphql.WatchQueryOptions<Mutation$Authenticate> {
   WatchOptions$Mutation$Authenticate({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$Authenticate variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Authenticate? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationAuthenticate,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$Authenticate,
         );
 }
@@ -394,10 +384,10 @@ class WatchOptions$Mutation$Authenticate
 extension ClientExtension$Mutation$Authenticate on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$Authenticate>> mutate$Authenticate(
           Options$Mutation$Authenticate options) async =>
-      await this.mutate(options);
+      await mutate(options);
   graphql.ObservableQuery<Mutation$Authenticate> watchMutation$Authenticate(
           WatchOptions$Mutation$Authenticate options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$Authenticate$login {
@@ -430,16 +420,16 @@ class Mutation$Authenticate$login {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$accessToken = accessToken;
-    _resultData['accessToken'] = l$accessToken;
+    resultData['accessToken'] = l$accessToken;
     final l$refreshToken = refreshToken;
-    _resultData['refreshToken'] = l$refreshToken;
+    resultData['refreshToken'] = l$refreshToken;
     final l$userId = userId;
-    _resultData['userId'] = l$userId;
+    resultData['userId'] = l$userId;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -461,7 +451,7 @@ class Mutation$Authenticate$login {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$Authenticate$login) ||
+    if (other is! Mutation$Authenticate$login ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -528,6 +518,7 @@ class _CopyWithImpl$Mutation$Authenticate$login<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? accessToken = _undefined,
     Object? refreshToken = _undefined,
@@ -554,8 +545,9 @@ class _CopyWithStubImpl$Mutation$Authenticate$login<TRes>
     implements CopyWith$Mutation$Authenticate$login<TRes> {
   _CopyWithStubImpl$Mutation$Authenticate$login(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? accessToken,
     String? refreshToken,

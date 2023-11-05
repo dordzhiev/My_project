@@ -48,7 +48,7 @@ class Variables$Mutation$UpdateCurrentLocation {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Variables$Mutation$UpdateCurrentLocation) ||
+    if (other is! Variables$Mutation$UpdateCurrentLocation ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -104,6 +104,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateCurrentLocation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? latitude = _undefined,
     Object? longitude = _undefined,
@@ -121,8 +122,9 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateCurrentLocation<TRes>
     implements CopyWith$Variables$Mutation$UpdateCurrentLocation<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateCurrentLocation(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     double? latitude,
     double? longitude,
@@ -147,11 +149,11 @@ class Mutation$UpdateCurrentLocation {
       updateCurrentLocation;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$updateCurrentLocation = updateCurrentLocation;
-    _resultData['updateCurrentLocation'] =
+    resultData['updateCurrentLocation'] =
         l$updateCurrentLocation.map((e) => e.toJson()).toList();
-    return _resultData;
+    return resultData;
   }
 
   @override
@@ -166,7 +168,7 @@ class Mutation$UpdateCurrentLocation {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$UpdateCurrentLocation) ||
+    if (other is! Mutation$UpdateCurrentLocation ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -213,7 +215,7 @@ abstract class CopyWith$Mutation$UpdateCurrentLocation<TRes> {
               Iterable<
                   CopyWith$Mutation$UpdateCurrentLocation$updateCurrentLocation<
                       Mutation$UpdateCurrentLocation$updateCurrentLocation>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Mutation$UpdateCurrentLocation<TRes>
@@ -229,6 +231,7 @@ class _CopyWithImpl$Mutation$UpdateCurrentLocation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? updateCurrentLocation = _undefined}) =>
       _then(Mutation$UpdateCurrentLocation(
           updateCurrentLocation: updateCurrentLocation == _undefined ||
@@ -236,14 +239,15 @@ class _CopyWithImpl$Mutation$UpdateCurrentLocation<TRes>
               ? _instance.updateCurrentLocation
               : (updateCurrentLocation as List<
                   Mutation$UpdateCurrentLocation$updateCurrentLocation>)));
+  @override
   TRes updateCurrentLocation(
           Iterable<Mutation$UpdateCurrentLocation$updateCurrentLocation> Function(
                   Iterable<
                       CopyWith$Mutation$UpdateCurrentLocation$updateCurrentLocation<
                           Mutation$UpdateCurrentLocation$updateCurrentLocation>>)
-              _fn) =>
+              fn) =>
       call(
-          updateCurrentLocation: _fn(_instance.updateCurrentLocation.map((e) =>
+          updateCurrentLocation: fn(_instance.updateCurrentLocation.map((e) =>
               CopyWith$Mutation$UpdateCurrentLocation$updateCurrentLocation(
                 e,
                 (i) => i,
@@ -254,13 +258,15 @@ class _CopyWithStubImpl$Mutation$UpdateCurrentLocation<TRes>
     implements CopyWith$Mutation$UpdateCurrentLocation<TRes> {
   _CopyWithStubImpl$Mutation$UpdateCurrentLocation(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call(
           {List<Mutation$UpdateCurrentLocation$updateCurrentLocation>?
               updateCurrentLocation}) =>
       _res;
-  updateCurrentLocation(_fn) => _res;
+  @override
+  updateCurrentLocation(fn) => _res;
 }
 
 const documentNodeMutationUpdateCurrentLocation = DocumentNode(definitions: [
@@ -333,26 +339,21 @@ typedef OnMutationCompleted$Mutation$UpdateCurrentLocation = FutureOr<void>
 class Options$Mutation$UpdateCurrentLocation
     extends graphql.MutationOptions<Mutation$UpdateCurrentLocation> {
   Options$Mutation$UpdateCurrentLocation({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdateCurrentLocation variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateCurrentLocation? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$UpdateCurrentLocation? onCompleted,
-    graphql.OnMutationUpdate<Mutation$UpdateCurrentLocation>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -361,8 +362,6 @@ class Options$Mutation$UpdateCurrentLocation
                         ? null
                         : _parserFn$Mutation$UpdateCurrentLocation(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationUpdateCurrentLocation,
           parserFn: _parserFn$Mutation$UpdateCurrentLocation,
         );
@@ -382,31 +381,22 @@ class Options$Mutation$UpdateCurrentLocation
 class WatchOptions$Mutation$UpdateCurrentLocation
     extends graphql.WatchQueryOptions<Mutation$UpdateCurrentLocation> {
   WatchOptions$Mutation$UpdateCurrentLocation({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdateCurrentLocation variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateCurrentLocation? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationUpdateCurrentLocation,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdateCurrentLocation,
         );
 }
@@ -416,11 +406,11 @@ extension ClientExtension$Mutation$UpdateCurrentLocation
   Future<graphql.QueryResult<Mutation$UpdateCurrentLocation>>
       mutate$UpdateCurrentLocation(
               Options$Mutation$UpdateCurrentLocation options) async =>
-          await this.mutate(options);
+          await mutate(options);
   graphql.ObservableQuery<Mutation$UpdateCurrentLocation>
       watchMutation$UpdateCurrentLocation(
               WatchOptions$Mutation$UpdateCurrentLocation options) =>
-          this.watchMutation(options);
+          watchMutation(options);
 }
 
 class Mutation$UpdateCurrentLocation$updateCurrentLocation {
@@ -437,10 +427,10 @@ class Mutation$UpdateCurrentLocation$updateCurrentLocation {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -454,7 +444,7 @@ class Mutation$UpdateCurrentLocation$updateCurrentLocation {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Mutation$UpdateCurrentLocation$updateCurrentLocation) ||
+    if (other is! Mutation$UpdateCurrentLocation$updateCurrentLocation ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -507,6 +497,7 @@ class _CopyWithImpl$Mutation$UpdateCurrentLocation$updateCurrentLocation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? $__typename = _undefined}) =>
       _then(Mutation$UpdateCurrentLocation$updateCurrentLocation(
           $__typename: $__typename == _undefined || $__typename == null
@@ -521,7 +512,8 @@ class _CopyWithStubImpl$Mutation$UpdateCurrentLocation$updateCurrentLocation<
   _CopyWithStubImpl$Mutation$UpdateCurrentLocation$updateCurrentLocation(
       this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? $__typename}) => _res;
 }

@@ -25,7 +25,7 @@ class ErrorDialog extends StatelessWidget {
               await action!();
               Navigator.maybeOf(context)?.pop();
             },
-            child: Text('Открыть'),
+            child: const Text('Открыть'),
           ),
       ],
     );
