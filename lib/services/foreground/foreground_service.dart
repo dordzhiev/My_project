@@ -81,7 +81,7 @@ class ForegroundService {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     final notificationsPlugin = flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-    if (!(await notificationsPlugin?.requestPermission() ?? false)) {
+    if (!(await notificationsPlugin?.requestNotificationsPermission() ?? false)) {
       throw PostNotificationDenied();
     }
 
