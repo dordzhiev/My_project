@@ -1,5 +1,6 @@
 import 'package:courier_app/common/graphql/fragments/order.graphql.dart';
 import 'package:courier_app/common/graphql/schema.graphql.dart';
+import 'package:courier_app/utils/datetime_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -24,11 +25,8 @@ class OrderCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildOrderCardHeader(context),
-            const SizedBox(height: 8),
             _buildRestaurantAddress(),
-            const SizedBox(height: 4),
             _buildCustomerAddress(),
-            const SizedBox(height: 4),
             _buildBottomMeta(context),
           ],
         ),
@@ -37,7 +35,6 @@ class OrderCard extends StatelessWidget {
   }
 
   Row _buildOrderCardHeader(BuildContext context) {
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -67,9 +64,9 @@ class OrderCard extends StatelessWidget {
       child: Text(
         currentStatus.$1,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
       ),
     );
   }
@@ -77,21 +74,21 @@ class OrderCard extends StatelessWidget {
   Text _buildPrices() {
     final totalCost = order.orderAmount + order.deliveryCostForCustomer;
     return Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(
-              text: totalCost.toStringAsFixed(0),
+      TextSpan(
+        children: [
+          TextSpan(
+            text: totalCost.toStringAsFixed(0),
+          ),
+          TextSpan(
+            text: ' / +${order.deliveryCostForCustomer.toStringAsFixed(0)}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF4CAF50),
             ),
-            TextSpan(
-              text: ' / +${order.deliveryCostForCustomer.toStringAsFixed(0)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF4CAF50),
-              ),
-            ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 
   Text _buildOrderCardTitle(BuildContext context) {
@@ -126,22 +123,33 @@ class OrderCard extends StatelessWidget {
   }
 
   Widget _buildRestaurantAddress() {
-    return Address(iconData: Icons.shopping_bag, address: order.restaurantAddress);
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Address(
+        iconData: Icons.shopping_bag,
+        address: order.restaurantAddress,
+      ),
+    );
   }
 
   Widget _buildCustomerAddress() {
-    return Address(iconData: Icons.person, address: order.customerAddress);
+    return Padding(
+      padding: const EdgeInsets.only(top: 4.0),
+      child: Address(iconData: Icons.person, address: order.customerAddress,),
+    );
   }
 
-  Align _buildBottomMeta(BuildContext context) {
-    final formattedDate = intl.DateFormat('Hm').format(order.createdAt);
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Text(
-        formattedDate,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.45),
-          fontWeight: FontWeight.bold,
+  Widget _buildBottomMeta(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          DateTimeUtils.formatTime(order.createdAt),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.45),
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );
